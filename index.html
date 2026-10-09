@@ -5,10 +5,15 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#166534">
 <title>Descubra o que você pensa</title>
-<!-- Preview do WhatsApp. TODO: criar og.jpg (1200x630) e trocar pela URL absoluta do site -->
+<!-- Preview do WhatsApp (precisa de URL completa) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://brasil-melhor.vercel.app/">
 <meta property="og:title" content="Descubra o que você pensa em 3 minutos">
 <meta property="og:description" content="Trabalho, família, Brasil, justiça e bolso. Sim ou não?">
-<meta property="og:image" content="og.jpg">
+<meta property="og:image" content="https://brasil-melhor.vercel.app/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <style>
 /* Tokens no padrão Tailwind (cores, sombras, raios) sem carregar a biblioteca */
 :root{
@@ -231,6 +236,10 @@ details.duv[open] summary{color:var(--green-800)}
 
 <script>
 var DATA = '25/10';
+
+// URL oficial que vai na mensagem do WhatsApp. Ex.: 'https://seusite.netlify.app/'
+// Vazio = usa o endereço atual, sem ?parâmetros (fbclid, utm...) e sem #
+var SITE = 'https://brasil-melhor.vercel.app/';
 
 /*
  5 temas x 2 cartões: pessoal/valor + objeção.
@@ -576,7 +585,7 @@ function resultado(){
        '</div><div class="conclusao sobe"' + d() + '><h2>O voto é seu. Pense com calma.</h2><span class="data">' + DATA + '</span></div>';
   leitura = 'Obrigado por responder. Antes de votar, pense na sua folga e no Brasil em primeiro lugar. O voto é seu.';
  }
- var msg = 'Fiz esse teste rápido sobre o que importa pra nossa família. 3 minutos, faz aí: ' + location.href.split('#')[0];
+ var msg = 'Fiz esse teste rápido sobre o que importa pra nossa família. 3 minutos, faz aí: ' + (SITE || location.origin + location.pathname);
  h += '<div class="acoes sobe"' + d() + '>' +
       '<a class="btn b-zap" href="https://wa.me/?text=' + encodeURIComponent(msg) + '">📲 Mandar no WhatsApp</a>' +
       '<button class="btn b-claro" id="ouvirRes">' + ic('som') + ' Ouvir resultado</button>' +
