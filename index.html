@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#166534">
+<title>Descubra o que você pensa</title>
+<!-- Preview do WhatsApp. TODO: criar og.jpg (1200x630) e trocar pela URL absoluta do site -->
+<meta property="og:title" content="Descubra o que você pensa em 3 minutos">
+<meta property="og:description" content="Trabalho, família, Brasil, justiça e bolso. Sim ou não?">
+<meta property="og:image" content="og.jpg">
+<style>
+/* Tokens no padrão Tailwind (cores, sombras, raios) sem carregar a biblioteca */
+:root{
+ --green-50:#f0fdf4;--green-100:#dcfce7;--green-500:#22c55e;--green-600:#16a34a;--green-700:#15803d;--green-800:#166534;--green-900:#14532d;
+ --emerald-600:#059669;--yellow-300:#fde047;--yellow-400:#facc15;--blue-600:#2563eb;--blue-700:#1d4ed8;
+ --slate-50:#f8fafc;--slate-100:#f1f5f9;--slate-200:#e2e8f0;--slate-400:#94a3b8;--slate-500:#64748b;--slate-600:#475569;--slate-700:#334155;--slate-900:#0f172a;
+ --shadow-lg:0 10px 15px -3px rgb(0 0 0/.1),0 4px 6px -4px rgb(0 0 0/.1);
+ --shadow-xl:0 20px 25px -5px rgb(0 0 0/.1),0 8px 10px -6px rgb(0 0 0/.1);
+ --shadow-2xl:0 25px 50px -12px rgb(0 0 0/.25);
+ --mola:cubic-bezier(.34,1.56,.64,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font:20px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--slate-900);background:var(--slate-100);-webkit-tap-highlight-color:transparent;overscroll-behavior:none;-webkit-text-size-adjust:100%;overflow-x:hidden}
+button{font:inherit;cursor:pointer;border:0}
+.tela{display:none;flex-direction:column;min-height:100%;max-width:448px;margin:0 auto;padding:20px 16px calc(20px + env(safe-area-inset-bottom))}
+.tela.on{display:flex}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border-radius:16px;padding:18px;font-size:22px;font-weight:800;text-decoration:none;box-shadow:var(--shadow-lg);transition:transform .15s,box-shadow .15s}
+.btn:active{transform:scale(.96);box-shadow:none}
+.sobe{opacity:0;animation:sobe .5s var(--mola) forwards;animation-delay:var(--d,0s)}
+@keyframes sobe{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.assina{margin-top:auto;padding-top:20px;font-size:14px;color:var(--slate-500);text-align:center}
+
+/* ---------- início ---------- */
+#inicio{max-width:none;color:#fff;background:linear-gradient(135deg,var(--green-900),var(--green-700),var(--emerald-600),var(--green-800));background-size:300% 300%;animation:fundo 12s ease infinite;position:relative;overflow:hidden}
+@keyframes fundo{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+#inicio::before,#inicio::after{content:"";position:absolute;border-radius:50%;filter:blur(40px);opacity:.35;pointer-events:none}
+#inicio::before{width:260px;height:260px;background:var(--yellow-400);top:-80px;right:-80px;animation:flutua 9s ease-in-out infinite}
+#inicio::after{width:220px;height:220px;background:var(--blue-600);bottom:-60px;left:-70px;animation:flutua 11s ease-in-out infinite reverse}
+@keyframes flutua{50%{transform:translate(-30px,30px) scale(1.1)}}
+#inicio .box{position:relative;z-index:1;max-width:448px;margin:0 auto;width:100%;display:flex;flex-direction:column;flex:1;justify-content:center}
+.pilula{align-self:flex-start;background:rgb(255 255 255/.15);border:1px solid rgb(255 255 255/.25);border-radius:999px;padding:6px 14px;font-size:15px;font-weight:700;backdrop-filter:blur(4px)}
+#inicio h1{font-size:40px;line-height:1.1;font-weight:900;margin:20px 0 12px;letter-spacing:-.5px}
+#inicio h1 span{color:var(--yellow-300)}
+#inicio .sub{font-size:22px;opacity:.9}
+.convite{font-size:20px;line-height:1.4;background:rgb(255 255 255/.12);border-left:4px solid var(--yellow-400);border-radius:12px;padding:12px 16px;margin-top:4px}
+.convite b{color:var(--yellow-300)}
+.temas{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.temas span{background:var(--yellow-400);color:var(--slate-900);font-size:15px;font-weight:800;border-radius:999px;padding:6px 12px}
+.acoes-ini{display:grid;gap:12px;margin-top:32px}
+.b-amarelo{background:var(--yellow-400);color:var(--slate-900)}
+.b-vidro{background:rgb(255 255 255/.15);color:#fff;border:2px solid rgb(255 255 255/.4);box-shadow:none}
+#inicio .assina{color:var(--green-100);opacity:.8;position:relative;z-index:1}
+
+/* ---------- antes de começar ---------- */
+#antes{justify-content:center}
+.antes-box{background:#fff;border-radius:24px;box-shadow:var(--shadow-2xl);padding:24px;position:relative;overflow:hidden}
+.antes-box::before{content:"";position:absolute;inset:0 0 auto;height:8px;background:linear-gradient(90deg,var(--green-600),var(--yellow-400),var(--blue-600))}
+.antes-topo{display:flex;align-items:center;justify-content:space-between}
+.antes-topo .mini-som{position:static}
+.antes-ico{font-size:44px}
+#antes h2{font-size:26px;line-height:1.2;font-weight:900;margin-top:12px}
+.antes-mito{font-size:20px;color:var(--slate-600);margin-top:14px}
+.antes-nao{font-size:30px;font-weight:900;color:var(--green-700);margin-top:6px}
+.antes-lista{list-style:none;display:grid;gap:12px;margin-top:14px}
+.antes-lista li{position:relative;padding-left:28px;font-size:20px;line-height:1.35}
+.antes-lista li::before{content:"✓";position:absolute;left:0;top:0;color:var(--green-600);font-weight:900}
+.antes-lista b,.antes-foco b{color:var(--green-800)}
+.antes-foco{font-size:20px;margin-top:18px;padding-top:16px;border-top:2px dashed var(--slate-200)}
+
+/* ---------- perguntas ---------- */
+.topo{display:flex;align-items:center;gap:12px}
+.barra{flex:1;height:12px;background:var(--slate-200);border-radius:999px;overflow:hidden}
+.barra i{display:block;height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,var(--green-600),var(--yellow-400));transition:width .5s var(--mola)}
+.num{font-size:16px;font-weight:800;color:var(--slate-500);min-width:44px;text-align:right}
+.som{flex:none;width:48px;height:48px;padding:0;border-radius:999px;background:#fff;color:var(--slate-700);box-shadow:var(--shadow-lg);display:grid;place-items:center;transition:background .2s}
+.som.on{background:var(--yellow-400)}
+.ic{display:block;flex:none;width:1.15em;height:1.15em;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.som .ic,.mini-som .ic{width:24px;height:24px}
+.voltar{color:var(--slate-700)}
+.voltar:active,.som:active{transform:scale(.92)}
+.palco{flex:1;position:relative;min-height:360px;margin-top:20px;perspective:1200px}
+/* card "de trás" para dar profundidade */
+.palco::before{content:"";position:absolute;inset:14px 14px -10px;background:#fff;border-radius:24px;opacity:.6;box-shadow:var(--shadow-lg)}
+.card,.fato{position:absolute;inset:0;background:#fff;border-radius:24px;box-shadow:var(--shadow-2xl);overflow:hidden}
+.card{display:flex;flex-direction:column;justify-content:center;padding:32px 24px;touch-action:none;user-select:none;-webkit-user-select:none;transition:transform .3s ease-out,opacity .3s;will-change:transform;animation:entra .45s var(--mola)}
+@keyframes entra{from{transform:scale(.85) translateY(30px);opacity:0}}
+.card.dica{animation:entra .45s var(--mola),balanca 1.2s .6s ease-in-out}
+@keyframes balanca{25%{transform:rotate(-5deg) translateX(-18px)}75%{transform:rotate(5deg) translateX(18px)}}
+.card::before{content:"";position:absolute;inset:0 0 auto;height:8px;background:linear-gradient(90deg,var(--green-600),var(--yellow-400),var(--blue-600))}
+.card .tema{align-self:flex-start;background:var(--green-50);color:var(--green-800);font-size:15px;font-weight:800;border-radius:999px;padding:6px 12px;margin-bottom:16px}
+.card .frase{font-size:32px;line-height:1.2;font-weight:900;letter-spacing:-.3px}
+.card .rod{position:absolute;bottom:20px;left:0;right:0;text-align:center;font-size:15px;font-weight:600;color:var(--slate-400)}
+.mini-som{position:absolute;top:24px;right:20px;width:52px;height:52px;padding:0;border-radius:999px;background:var(--slate-100);color:var(--slate-700);display:grid;place-items:center;z-index:2}
+.mini-som:active{background:var(--yellow-300)}
+.tinta{position:absolute;inset:0;pointer-events:none;opacity:0}
+.tinta.s{background:linear-gradient(135deg,rgb(34 197 94/.25),transparent 70%)}
+.tinta.n{background:linear-gradient(225deg,rgb(100 116 139/.25),transparent 70%)}
+.selo{position:absolute;top:28px;padding:6px 14px;border:4px solid;border-radius:12px;font-size:24px;font-weight:900;opacity:0;background:#fff}
+.selo.s{left:20px;color:var(--green-600);transform:rotate(-10deg)}
+.selo.n{right:84px;color:var(--slate-500);transform:rotate(10deg)}
+.botoes{display:flex;gap:12px;margin-top:20px}
+.botoes .btn{flex:1;padding:20px 8px;font-size:22px}
+.b-nao{background:#fff;color:var(--slate-600);border:3px solid var(--slate-200)}
+.b-sim{background:var(--green-600);color:#fff}
+
+/* ---------- você sabia ---------- */
+.fato{display:flex;flex-direction:column;animation:vira .5s var(--mola);transform-origin:center}
+@keyframes vira{from{transform:rotateY(-80deg) scale(.9);opacity:0}}
+.fato .tag{display:flex;align-items:center;justify-content:space-between;background:var(--yellow-400);font-weight:900;font-size:18px;padding:16px 20px 16px 24px;letter-spacing:.5px}
+.fato .tag .mini-som{position:static;width:44px;height:44px;font-size:20px;background:rgb(255 255 255/.5)}
+.fato .corpo{padding:20px 24px;flex:1}
+.reacao{font-size:26px;font-weight:900;line-height:1.2;margin-bottom:16px}
+.fato ul{list-style:none;display:grid;gap:12px}
+.fato li{display:flex;gap:12px;font-size:21px;font-weight:600;line-height:1.3}
+.fato li::before{content:"";flex:none;width:12px;height:12px;margin-top:8px;border-radius:999px;background:var(--green-600)}
+.fato a{display:inline-block;margin-top:16px;color:var(--blue-700);font-size:15px;font-weight:600}
+.duv-btn{display:block;width:100%;margin-top:20px;background:var(--slate-100);color:var(--slate-900);border:2px dashed var(--slate-400);border-radius:14px;padding:14px;font-size:19px;font-weight:800}
+.duv-btn:active{transform:scale(.97)}
+
+/* ---------- "mas dizem que..." ---------- */
+.duv-tema{font-size:19px;font-weight:900;margin:20px 0 4px;color:var(--slate-700)}
+details.duv{background:#fff;border-radius:16px;box-shadow:var(--shadow-lg);margin-top:10px;overflow:hidden}
+details.duv summary{list-style:none;cursor:pointer;position:relative;padding:16px 52px 16px 16px;font-size:19px;font-weight:800;line-height:1.3}
+details.duv summary::-webkit-details-marker{display:none}
+details.duv summary::after{content:"";position:absolute;right:16px;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:999px;transition:transform .2s;
+ background:linear-gradient(var(--green-700),var(--green-700)) center/12px 3px no-repeat,linear-gradient(var(--green-700),var(--green-700)) center/3px 12px no-repeat,var(--green-50)}
+details.duv[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+details.duv[open] summary{color:var(--green-800)}
+.resp{padding:0 16px 16px;animation:sobe .35s var(--mola)}
+.resp ul{list-style:none;display:grid;gap:10px}
+.resp li{display:flex;gap:10px;font-size:19px;line-height:1.35}
+.resp li::before{content:"✓";flex:none;color:var(--green-600);font-weight:900}
+.resp-pe{display:flex;align-items:center;gap:16px;margin-top:12px}
+.ouvir-duv{display:inline-flex;align-items:center;gap:6px;background:var(--slate-100);color:var(--slate-700);border-radius:999px;padding:8px 14px;font-size:16px;font-weight:700}
+.resp-pe a{color:var(--blue-700);font-size:15px;font-weight:600}
+#folha{position:fixed;inset:0;z-index:20;background:rgb(15 23 42/.55);display:none;align-items:flex-end}
+#folha.on{display:flex;animation:surge .2s}
+@keyframes surge{from{opacity:0}}
+.folha-box{width:100%;max-width:448px;margin:0 auto;max-height:88vh;overflow:auto;background:var(--slate-100);border-radius:24px 24px 0 0;padding:20px 16px calc(24px + env(safe-area-inset-bottom));animation:sobeFolha .35s var(--mola)}
+@keyframes sobeFolha{from{transform:translateY(100%)}}
+.folha-topo{display:flex;align-items:center;justify-content:space-between;font-size:22px}
+.fecha{display:inline-flex;align-items:center;gap:6px;background:#fff;color:var(--slate-700);border-radius:999px;padding:10px 16px;font-size:16px;font-weight:800;box-shadow:var(--shadow-lg)}
+.folha-sub{font-size:17px;color:var(--slate-600);margin-top:4px}
+.fato .pe{padding:0 20px 20px}
+.b-verde{background:var(--green-600);color:#fff}
+
+/* ---------- resultado ---------- */
+#resultado h2{font-size:30px;line-height:1.15;font-weight:900;letter-spacing:-.3px}
+.valores{display:grid;gap:10px;margin-top:16px}
+.valor{display:flex;align-items:center;gap:14px;background:#fff;border-radius:16px;padding:14px 16px;box-shadow:var(--shadow-lg)}
+.valor .ico{flex:none;width:52px;height:52px;border-radius:14px;background:var(--green-50);display:grid;place-items:center;font-size:28px}
+.valor b{display:block;font-size:20px;line-height:1.2}
+.valor small.obj{color:var(--green-800);font-style:italic;margin-top:6px}
+.valor small{display:block;font-size:17px;color:var(--slate-600);font-weight:600;margin-top:2px}
+.conclusao{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--green-800),var(--green-600));color:#fff;border-radius:24px;padding:24px 20px;margin:20px 0;box-shadow:var(--shadow-xl)}
+.conclusao::after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:var(--yellow-400);opacity:.2;filter:blur(30px);right:-50px;top:-50px}
+.conclusao h2{font-size:28px!important}
+.data{display:inline-block;background:var(--yellow-400);color:var(--slate-900);font-weight:900;border-radius:12px;padding:10px 16px;margin-top:16px;font-size:24px;animation:pulsa 2s ease-in-out infinite}
+@keyframes pulsa{50%{transform:scale(1.05)}}
+.acoes{display:grid;gap:12px}
+.b-zap{background:#25d366;color:#fff}
+.b-claro{background:#fff;color:var(--slate-700)}
+
+/* confete */
+.confete{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:9}
+.confete i{position:absolute;top:-20px;width:10px;height:16px;border-radius:2px;animation:cai linear forwards}
+@keyframes cai{to{transform:translateY(110vh) rotate(720deg)}}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.sobe{opacity:1}}
+</style>
+</head>
+<body>
+
+<section id="inicio" class="tela on">
+ <div class="box">
+  <span class="pilula sobe">🇧🇷 2º turno 2026</span>
+  <h1 class="sobe" style="--d:.1s">Descubra o que <span>você pensa</span> em 3 minutos.</h1>
+  <p class="convite sobe" style="--d:.16s">Nesse 2º turno, vou de Lula e te convido a ler <b>de mente aberta</b>, pra gente refletir junto.</p>
+  <div class="temas sobe" style="--d:.44s">
+   <span>Trabalho</span><span>Família</span><span>Brasil</span><span>Justiça</span><span>Bolso</span>
+  </div>
+  <div class="acoes-ini sobe" style="--d:.52s">
+   <button class="btn b-amarelo" id="comecar">Começar →</button>
+   <button class="btn b-vidro" id="comecarSom"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg> Começar ouvindo</button>
+  </div>
+ </div>
+ <p class="assina">Feito por alguém que quer ver um Brasil melhor.</p>
+</section>
+
+<section id="antes" class="tela">
+ <div class="antes-box">
+  <div class="antes-topo sobe"><span class="antes-ico">🤝</span><button class="mini-som" id="ouvirAntes" aria-label="Ouvir"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg></button></div>
+  <h2 class="sobe" style="--d:.08s">Antes de começar, uma coisa importante.</h2>
+  <p class="antes-mito sobe" style="--d:.16s">Muita gente acha que a esquerda é só aborto, maconha, banheiro trans e ser contra a religião.</p>
+  <p class="antes-nao sobe" style="--d:.24s">Não é.</p>
+  <ul class="antes-lista">
+   <li class="sobe" style="--d:.32s">A esquerda <b>discute</b> esses temas porque acredita que todo mundo tem direitos.</li>
+   <li class="sobe" style="--d:.4s"><b>Discutir não é defender.</b> Votar no Lula não faz ninguém ser a favor do aborto.</li>
+   <li class="sobe" style="--d:.48s">O que nos une é a <b>liberdade de discutir ideias</b>.</li>
+  </ul>
+  <p class="antes-foco sobe" style="--d:.56s">Aqui, a conversa é sobre <b>trabalho, família, Brasil e o seu bolso</b>.</p>
+ </div>
+ <button class="btn b-verde sobe" style="--d:.64s;margin-top:20px" id="entendi">Entendi, vamos lá →</button>
+</section>
+
+<section id="perguntas" class="tela">
+ <div class="topo">
+  <button class="som voltar" id="voltar" aria-label="Voltar"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+  <div class="barra"><i id="prog"></i></div>
+  <span class="num" id="num">1/10</span>
+  <button class="som" id="som" aria-label="Ligar ou desligar o som"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="m22 9-6 6M16 9l6 6"/></svg></button>
+ </div>
+ <div class="palco" id="palco"></div>
+ <div class="botoes" id="botoes">
+  <button class="btn b-nao" id="bNao"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg> Não</button>
+  <button class="btn b-sim" id="bSim"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Sim</button>
+ </div>
+</section>
+
+<section id="resultado" class="tela"></section>
+
+<div id="folha" role="dialog" aria-modal="true" aria-label="Mas dizem que">
+ <div class="folha-box">
+  <div class="folha-topo"><b>🤔 Mas dizem que...</b><button class="fecha" id="fechaFolha">Fechar <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  <p class="folha-sub">Toque numa frase pra ver a resposta.</p>
+  <div id="folhaLista"></div>
+ </div>
+</div>
+
+<script>
+var DATA = '25/10';
+
+/*
+ 5 temas x 2 cartões: pessoal/valor + objeção.
+ Cada cartão:
+  t      = tema (chave de TEMAS)
+  f      = frase do cartão
+  s / n  = o que aparece se a pessoa disser Sim / Não:
+           r = reação curta, x = fato em 1 a 3 frases curtas
+           p:1 = essa resposta mostra que a pessoa se importa com o tema
+           o:1 = essa resposta é a objeção do tema (o resultado responde a ela com respeito)
+  fonte  = link. TODO: preencher TODAS antes de publicar.
+  af/ax  = (opcional) mp3 com voz gravada da frase / do fato. Sem mp3, o celular lê o texto.
+*/
+var CARDS = [
+ /* ---- 6x1 ---- */
+ {t:'6x1', f:'Alguém da sua casa trabalha 6 dias por semana?',
+  s:{p:1, r:'Então esta eleição também é sobre o domingo dele.', x:['Na escala 6x1, a folga é 1 dia só.','Lula defende acabar com a 6x1, sem cortar salário.']},
+  n:{r:'Que bom pra sua casa.', x:['Agora pense em quem te atende no sábado e no domingo: o caixa, o frentista, a moça da padaria.','Muitos saem antes do filho acordar e chegam depois dele dormir.','Lula defende acabar com a 6x1, sem cortar salário.']},
+  fonte:''},
+ {t:'6x1', f:'Diminuir a jornada vai quebrar o pequeno comerciante.',
+  s:{o:1, r:'É uma preocupação justa.', x:['Em 1988, a jornada caiu de 48h pra 44h.','Estudos mostram que o emprego não caiu por causa disso.','A França trabalha 35h por semana e segue entre as maiores economias do mundo.']},
+  n:{p:1, r:'Também achamos.', x:['Trabalhador descansado rende mais e adoece menos.','Isso é bom pro patrão também.']},
+  fonte:''}, // TODO: fonte do estudo de 1988 (Gonzaga, Menezes-Filho e Camargo, 2003)
+
+ /* ---- trabalho por hora ---- */
+ {t:'hora', f:'Você pagaria suas contas sem saber quanto vai ganhar no mês?',
+  s:{r:'Você é dos poucos que conseguem.', x:['Agora imagine seu filho começando a vida assim.','Sem saber se vai ganhar R$ 300 ou R$ 1.500 no mês.','Como ele aluga uma casa? Como financia uma moto?']},
+  n:{p:1, r:'Quase ninguém consegue.', x:['Por isso salário fixo é segurança pra família.']},
+  fonte:''},
+ {t:'hora', f:'Trabalho por hora dá liberdade pra quem quer trabalhar mais.',
+  s:{o:1, r:'Pra alguns, pode ser.', x:['Mas quem escolhe as horas é o patrão, não você.','Se ele não chamar, você não ganha.']},
+  n:{p:1, r:'Exato.', x:['Quem escolhe as horas é o patrão.','O PT votou contra o trabalho por hora em 2017.']},
+  fonte:''}, // TODO: se houver proposta documentada do adversário sobre trabalho por hora, citar aqui com fonte
+
+ /* ---- soberania ---- */
+ {t:'patria', f:'Ficar do lado dos EUA é bom pro Brasil.',
+  s:{o:1, r:'Ser amigo dos EUA é bom, sim.', x:['Mas amigo não é empregado.','Em 2025, os EUA puseram tarifa de 50% em produtos do Brasil.','Quem pagou foi o produtor e o trabalhador daqui.']},
+  n:{p:1, r:'Concordamos.', x:['Dá pra ser amigo dos EUA sem obedecer.','Lula negocia com todos: EUA, China e Europa.']},
+  fonte:''},
+ {t:'patria', f:'Patriota defende o Brasil em primeiro lugar.',
+  s:{p:1, r:'Isso.', x:['Patriotismo é defender o emprego e a indústria daqui.','Não é pedir pra outro país punir o Brasil.']},
+  n:{r:'Talvez você ache que valores vêm antes do país. Faz sentido.', x:['Mas que valor justifica ir a outro país pedir punições contra o Brasil?','Em 2025, Eduardo Bolsonaro fez isso nos EUA.','Patriota defende o próprio país, mesmo quando discorda do governo.']},
+  fonte:''},
+
+ /* ---- justiça ---- */
+ {t:'justica', f:'Processo anulado não quer dizer que a pessoa é inocente.',
+  s:{o:1, r:'É verdade. Anulado não é o mesmo que inocentado.', x:['Mas o juiz que condenou Lula depois virou ministro de Bolsonaro. Por isso o STF anulou tudo.','Sem julgamento justo, não existe condenação válida. Hoje Lula não tem nenhuma.','Essa regra vale pra todo mundo, inclusive pra quem você apoia.']},
+  n:{p:1, r:'Pois é.', x:['O juiz que condenou Lula depois virou ministro de Bolsonaro.','Por isso o STF anulou as condenações. Hoje Lula não tem nenhuma.']},
+  fonte:''},
+ {t:'justica', f:'Ninguém está acima da lei. Nem parente de político.',
+  s:{p:1, r:'Concordamos.', x:['Foram a PF e a CGU deste governo que descobriram a fraude do INSS.','A investigação continua, doa a quem doer.']},
+  n:{r:'Talvez você sinta que a lei não vale igual pra todos. Muita gente sente isso.', x:['A saída é cobrar a mesma regra pra todo mundo, de esquerda e de direita.','A PF deste governo investigou a fraude do INSS, mesmo derrubando um ministro do próprio governo.','Lei que só vale pro outro lado não é justiça.']},
+  fonte:''}, // TODO: confirmar o status atual das investigações envolvendo Lulinha antes de citar o nome dele
+
+ /* ---- bolso ---- */
+ {t:'bolso', f:'Alguém na sua casa ganha até R$ 5 mil por mês?',
+  s:{p:1, r:'Então essa pessoa não paga mais Imposto de Renda.', x:['Desde 2026, quem ganha até R$ 5 mil está isento.','Foi uma lei do governo Lula.']},
+  n:{r:'Então sua casa ganha um pouco mais. Ótimo.', x:['Pense na sua faxineira, no seu funcionário, no sobrinho que começou a trabalhar.','Quem ganha R$ 5 mil agora economiza cerca de R$ 4 mil por ano em imposto.','Esse dinheiro volta pro comércio do seu bairro.']},
+  fonte:''},
+ {t:'bolso', f:'Governo que gasta muito deixa o país endividado.',
+  s:{o:1, r:'É uma preocupação séria.', x:['O governo anterior adiou dívidas da União (os precatórios).','Em 2023, o governo Lula pagou R$ 92 bilhões dessas contas atrasadas.']},
+  n:{p:1, r:'Depende do gasto.', x:['Remédio de graça no Farmácia Popular evita internação, que custa muito mais.','E o dinheiro de quem recebe gira no comércio do bairro.']},
+  fonte:''}
+];
+
+// Resultado: i = ícone, nome = valor da pessoa, l = o que o Lula faz, o = resposta à objeção (se ela concordou com a objeção)
+var TEMAS = {
+ '6x1':   {i:'👨‍👩‍👧', nome:'Folga com a família', l:'Lula: fim da escala 6x1 sem cortar salário', o:'Sobre o comércio: em 1988 a jornada caiu e o emprego não.'},
+ hora:    {i:'💼', nome:'Salário garantido', l:'Lula: carteira assinada, não pagamento por hora', o:'No trabalho por hora, quem escolhe as horas é o patrão.'},
+ patria:  {i:'🇧🇷', nome:'Brasil em 1º lugar', l:'Lula: amigo de todos, empregado de ninguém', o:'Amizade com os EUA, sim. Obedecer, não.'},
+ justica: {i:'⚖️', nome:'Justiça pra todos', l:'Lula: nenhuma condenação e PF livre pra investigar', o:'Julgamento justo vale pra todo mundo.'},
+ bolso:   {i:'💰', nome:'Dinheiro no bolso', l:'Lula: zero IR até R$ 5 mil e remédio de graça', o:'Lula pagou R$ 92 bi de dívidas atrasadas.'}
+};
+
+/*
+ "Mas dizem que...": objeções comuns por tema e a resposta.
+  q = a objeção, do jeito que as pessoas falam
+  a = resposta em 2 ou 3 frases curtas
+  fonte = link. TODO: preencher antes de publicar.
+*/
+var DUV = {
+ '6x1': [
+  {q:'"Vai quebrar as empresas."', a:['Em 1988, a jornada caiu de 48h pra 44h. As empresas não quebraram e o emprego não caiu.','A França trabalha 35h por semana e segue sendo uma das maiores economias do mundo.'], fonte:''},
+  {q:'"Vai gerar desemprego."', a:['O comércio que abre todo dia vai precisar de mais gente pra cobrir as folgas.','Isso pode abrir vagas, não fechar.'], fonte:''},
+  {q:'"Ninguém vai produzir mais nada."', a:['Em 2022, 61 empresas do Reino Unido testaram trabalhar 4 dias por semana.','56 delas quiseram continuar depois do teste.','Trabalhador descansado falta menos e rende mais.'], fonte:''},
+  {q:'"Os preços vão subir."', a:['Pode haver algum custo no começo, é verdade.','Mas trabalhador com folga também gasta: no comércio, no lazer, no turismo do bairro. Esse dinheiro gira.'], fonte:''},
+  {q:'"Um dia de folga já basta."', a:['Faça a conta: 6 dias de trabalho e 1 dia pra lavar roupa, ir ao mercado e resolver a vida.','Sobra zero dia pra família.','Até a Bíblia separa um dia só pro descanso.'], fonte:''},
+  {q:'"Isso é coisa de quem não quer trabalhar."', a:['Quem trabalha 6x1 é o caixa, o frentista, o repositor, o segurança. Gente que levanta cedo.','Querer um domingo com a família não é preguiça.'], fonte:''}
+ ],
+ hora: [
+  {q:'"Com trabalho por hora, mais gente vai ter emprego."', a:['O trabalho por hora (intermitente) existe desde 2017.','Pesquisas do DIEESE mostram que muitos ficam meses sem ser chamados e, na média, ganham menos que um salário mínimo.'], fonte:''}, // TODO: confirmar números do DIEESE
+  {q:'"O trabalhador escolhe quando quer trabalhar."', a:['Ele pode recusar um chamado. Mas quem recusa costuma deixar de ser chamado.','Na prática, quem decide é o patrão.'], fonte:''},
+  {q:'"Carteira assinada é coisa do passado."', a:['Carteira assinada garante férias, 13º e FGTS.','No trabalho por hora, tudo isso fica proporcional ao pouco que você trabalhou.','Sem salário certo, fica difícil financiar uma casa ou um carro.'], fonte:''},
+  {q:'"A CLT atrapalha quem quer empreender."', a:['Quem quer arriscar pode abrir um MEI e ser dono do próprio negócio.','O problema é o risco imposto: você trabalha pro patrão, mas sem as garantias de empregado.','Aí o risco fica com você e o lucro fica com ele.'], fonte:''}
+ ],
+ patria: [
+  {q:'"Os EUA são nossos aliados, temos que seguir eles."', a:['Aliado se respeita, não se obedece.','Em 2025, a tarifa dos EUA puniu produtores brasileiros, inclusive do agro.','Nenhum país coloca o Brasil em primeiro lugar. Só nós.'], fonte:''},
+  {q:'"Lula é amigo de ditador."', a:['Comércio não é amizade.','A China é quem mais compra do agro brasileiro: soja, carne e minério.','Bolsonaro também foi à China vender pra eles, em 2019.'], fonte:''}
+ ],
+ justica: [
+  {q:'"Lula é ladrão."', a:['Hoje ele não tem nenhuma condenação.','Quem acusa precisa provar num julgamento justo. Essa regra protege você também.'], fonte:''},
+  {q:'"Lula foi condenado em 3 instâncias."', a:['Todas as condenações nasceram do mesmo processo, com um juiz que o STF declarou parcial e que não era o juiz certo pro caso.','Quando a base é viciada, tudo o que veio depois cai junto.','Você aceitaria ser julgado por um juiz que é seu inimigo?'], fonte:''},
+  {q:'"Foi tudo armação do STF."', a:['O juiz que condenou Lula virou ministro do Bolsonaro logo depois.','Mensagens vazadas mostraram o juiz orientando a acusação.','Por isso o STF declarou o julgamento parcial.'], fonte:''},
+  {q:'"E o mensalão? E o petrolão?"', a:['Houve corrupção, e gente do PT foi condenada e presa.','Isso mostra que a Justiça e a Polícia Federal funcionaram com o PT no governo.'], fonte:''},
+  {q:'"E o filho do Lula?"', a:['Se houver indício, tem que investigar e punir.','Nenhum filho de presidente está acima da lei, de nenhum presidente.'], fonte:''}
+ ],
+ bolso: [
+  {q:'"A dívida pública explodiu com Lula."', a:['A dívida subiu, sim.','Parte disso foi pagar contas que o governo anterior adiou (R$ 92 bi em precatórios). Outra parte são os juros altos.'], fonte:''},
+  {q:'"Empresa pública só dá prejuízo."', a:['Petrobras, Banco do Brasil e Caixa dão lucro de bilhões.','E empresa pública não existe só pra lucrar: os Correios chegam aonde empresa privada não vai.'], fonte:''},
+  {q:'"Bolsa Família sustenta vagabundo."', a:['O Bolsa Família exige criança na escola e vacina em dia.','Quem arruma emprego pode continuar recebendo uma parte por um tempo, pra não ter medo de trabalhar.'], fonte:''},
+  {q:'"Governo gasta demais com remédio e aposentado."', a:['Remédio de pressão que falta vira AVC, e um AVC custa muito mais pro SUS. Prevenir sai mais barato.','Desde 2025, os remédios do Farmácia Popular são de graça.','Desde 2023, o salário mínimo e a aposentadoria sobem acima da inflação.'], fonte:''},
+  {q:'"O PT só aumenta imposto."', a:['Quem ganha até R$ 5 mil parou de pagar Imposto de Renda.','Quem ganha mais de R$ 50 mil por mês passou a pagar um pouco mais pra compensar.'], fonte:''}
+ ]
+};
+
+var $ = function(id){ return document.getElementById(id); };
+
+// Ícones SVG (centralizam igual em qualquer celular, ao contrário de emoji)
+var IC = {
+ voltar: '<path d="M19 12H5M12 19l-7-7 7-7"/>',
+ som: '<path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/>',
+ mudo: '<path d="M11 5 6 9H2v6h4l5 4z"/><path d="m22 9-6 6M16 9l6 6"/>',
+ sim: '<path d="M20 6 9 17l-5-5"/>',
+ nao: '<path d="M18 6 6 18M6 6l12 12"/>'
+};
+function ic(n){ return '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true">' + IC[n] + '</svg>'; }
+var i = 0, resp = [], fase = 'q', card = null, ocupado = false;
+
+/* ---------- áudio: mp3 se existir, senão voz do celular ---------- */
+var somOn = false, aud = null, vozes = [], TTS = 'speechSynthesis' in window;
+function carregaVozes(){ vozes = speechSynthesis.getVoices().filter(function(v){ return /pt[-_]BR/i.test(v.lang); }); }
+if (TTS) { carregaVozes(); speechSynthesis.onvoiceschanged = carregaVozes; }
+function para(){ if (aud) { aud.pause(); aud = null; } if (TTS) speechSynthesis.cancel(); }
+function tts(t){
+ if (!TTS) return;
+ var u = new SpeechSynthesisUtterance(t);
+ u.lang = 'pt-BR'; u.rate = 1;
+ var v = vozes.filter(function(v){ return /google|luciana|francisca|natural|online/i.test(v.name); })[0] || vozes[0];
+ if (v) u.voice = v;
+ speechSynthesis.speak(u);
+}
+function fala(t, mp3){
+ para();
+ if (mp3) { aud = new Audio(mp3); aud.play().catch(function(){ tts(t); }); }
+ else tts(t);
+}
+function setSom(on){
+ somOn = on;
+ $('som').innerHTML = ic(on ? 'som' : 'mudo');
+ $('som').classList.toggle('on', on);
+ if (!on) para();
+}
+function vibra(ms){ if (navigator.vibrate) navigator.vibrate(ms); }
+
+/* ---------- telas ---------- */
+function mostra(id){
+ var t = document.querySelectorAll('.tela');
+ for (var k = 0; k < t.length; k++) t[k].classList.toggle('on', t[k].id === id);
+ scrollTo(0, 0);
+}
+
+function botaoSom(onclick){
+ var b = document.createElement('button');
+ b.className = 'mini-som'; b.innerHTML = ic('som'); b.setAttribute('aria-label', 'Ouvir');
+ b.addEventListener('pointerdown', function(e){ e.stopPropagation(); });
+ b.onclick = function(e){ e.stopPropagation(); onclick(); };
+ return b;
+}
+
+function novoCard(){
+ var d = CARDS[i];
+ $('num').textContent = (i + 1) + '/' + CARDS.length;
+ $('prog').style.width = (i / CARDS.length * 100) + '%';
+ $('botoes').style.visibility = 'visible';
+ var c = document.createElement('div');
+ c.className = 'card' + (i === 0 ? ' dica' : '');
+ c.innerHTML = '<div class="tinta s"></div><div class="tinta n"></div>' +
+  '<span class="selo s">SIM</span><span class="selo n">NÃO</span>' +
+  '<span class="tema"></span><div class="frase"></div><div class="rod">← arraste pro lado →</div>';
+ var tm = TEMAS[d.t];
+ c.querySelector('.tema').textContent = tm.i + ' ' + tm.nome;
+ c.querySelector('.frase').textContent = d.f;
+ c.appendChild(botaoSom(function(){ fala(d.f, d.af); }));
+ $('palco').innerHTML = '';
+ $('palco').appendChild(c);
+ card = c; ocupado = false; fase = 'q';
+ arrasta(c);
+ if (somOn) fala(d.f, d.af);
+}
+
+function marca(dx){
+ var a = Math.min(Math.abs(dx) / 100, 1), s = dx > 0 ? a : 0, n = dx < 0 ? a : 0;
+ card.querySelector('.selo.s').style.opacity = s;
+ card.querySelector('.tinta.s').style.opacity = s;
+ card.querySelector('.selo.n').style.opacity = n;
+ card.querySelector('.tinta.n').style.opacity = n;
+}
+
+function arrasta(c){
+ var x0 = null, dx = 0, passou = false;
+ c.addEventListener('pointerdown', function(e){
+  if (ocupado) return;
+  x0 = e.clientX; dx = 0; passou = false;
+  c.setPointerCapture(e.pointerId);
+  c.style.transition = 'none'; c.style.animation = 'none';
+ });
+ c.addEventListener('pointermove', function(e){
+  if (x0 === null) return;
+  dx = e.clientX - x0;
+  c.style.transform = 'translateX(' + dx + 'px) rotate(' + dx / 16 + 'deg) scale(1.03)';
+  marca(dx);
+  var p = Math.abs(dx) > 100;
+  if (p && !passou) vibra(10);
+  passou = p;
+ });
+ function solta(){
+  if (x0 === null) return;
+  x0 = null;
+  c.style.transition = '';
+  if (Math.abs(dx) > 100) responde(dx > 0);
+  else { c.style.transform = ''; marca(0); }
+ }
+ c.addEventListener('pointerup', solta);
+ c.addEventListener('pointercancel', solta);
+}
+
+function responde(sim){
+ if (ocupado) return;
+ ocupado = true;
+ vibra(25);
+ var d = CARDS[i];
+ resp[i] = sim;
+ card.style.animation = 'none';
+ marca(sim ? 200 : -200);
+ card.style.transform = 'translateX(' + (sim ? 140 : -140) + '%) rotate(' + (sim ? 24 : -24) + 'deg)';
+ card.style.opacity = '0';
+ $('botoes').style.visibility = 'hidden';
+ setTimeout(function(){ fato(d, sim); }, 250);
+}
+
+function fato(d, sim){
+ var a = sim ? d.s : d.n, reacao = a.r;
+ var f = document.createElement('div');
+ f.className = 'fato';
+ f.innerHTML = '<div class="tag"><span>' + (a.p ? '💡 VOCÊ SABIA?' : '🤔 PENSE NISSO') + '</span></div><div class="corpo">' +
+  '<div class="reacao"></div><ul></ul>' +
+  (d.fonte ? '<a target="_blank" rel="noopener">Ver a fonte ↗</a>' : '') +
+  (DUV[d.t] ?'<button class="duv-btn">🤔 Mas dizem que...</button>' : '') +
+  '</div><div class="pe"><button class="btn b-verde">Próximo →</button></div>';
+ f.querySelector('.reacao').textContent = reacao;
+ var ul = f.querySelector('ul');
+ a.x.forEach(function(t, k){
+  var li = document.createElement('li');
+  li.className = 'sobe'; li.style.setProperty('--d', (.15 + k * .12) + 's');
+  li.textContent = t; ul.appendChild(li);
+ });
+ if (d.fonte) f.querySelector('a').href = d.fonte;
+ var leitura = reacao + ' ' + a.x.join(' ');
+ f.querySelector('.tag').appendChild(botaoSom(function(){ fala(leitura, d.ax); }));
+ f.querySelector('.pe button').onclick = proximo;
+ var db = f.querySelector('.duv-btn');
+ if (db) db.onclick = function(){ abreFolha(d.t); };
+ $('palco').innerHTML = '';
+ $('palco').appendChild(f);
+ fase = 'f';
+ if (somOn) fala(leitura, d.ax);
+}
+
+function proximo(){
+ para();
+ i++;
+ if (i < CARDS.length) novoCard();
+ else resultado();
+}
+
+function esc(s){ return s.replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+/* ---------- "Mas dizem que...": sanfona que abre ao tocar ---------- */
+function duvidas(t){
+ return DUV[t].map(function(x, k){
+  return '<details class="duv"><summary>' + esc(x.q) + '</summary><div class="resp"><ul>' +
+   x.a.map(function(s){ return '<li>' + esc(s) + '</li>'; }).join('') + '</ul>' +
+   '<div class="resp-pe"><button class="ouvir-duv" data-t="' + t + '" data-k="' + k + '">' + ic('som') + ' Ouvir</button>' +
+   (x.fonte ? '<a href="' + esc(x.fonte) + '" target="_blank" rel="noopener">Ver a fonte ↗</a>' : '') +
+   '</div></div></details>';
+ }).join('');
+}
+function abreFolha(t){
+ para();
+ $('folhaLista').innerHTML = '<h3 class="duv-tema">' + TEMAS[t].i + ' ' + esc(TEMAS[t].nome) + '</h3>' + duvidas(t);
+ $('folha').classList.add('on');
+}
+function fechaFolha(){ $('folha').classList.remove('on'); para(); }
+document.addEventListener('click', function(e){
+ var b = e.target.closest('.ouvir-duv');
+ if (!b) return;
+ var x = DUV[b.dataset.t][b.dataset.k];
+ fala('Dizem que: ' + x.q.replace(/"/g, '') + ' ' + x.a.join(' '));
+});
+
+function confete(){
+ if (matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+ var cores = ['#16a34a','#facc15','#2563eb','#ffffff','#22c55e'], box = document.createElement('div'), h = '';
+ box.className = 'confete';
+ for (var k = 0; k < 40; k++) {
+  h += '<i style="left:' + (Math.random() * 100) + '%;background:' + cores[k % 5] +
+       ';animation-duration:' + (1.8 + Math.random() * 1.5) + 's;animation-delay:' + (Math.random() * .5) + 's"></i>';
+ }
+ box.innerHTML = h;
+ document.body.appendChild(box);
+ setTimeout(function(){ box.remove(); }, 4000);
+}
+
+function resultado(){
+ $('prog').style.width = '100%';
+ fase = 'r';
+ var pts = {}, obj = {}, sims = [];
+ CARDS.forEach(function(c, n){
+  if (resp[n] === undefined) return;
+  var a = resp[n] ? c.s : c.n;
+  if (a.p) pts[c.t] = 1;
+  if (a.o) obj[c.t] = 1;
+ });
+ Object.keys(TEMAS).forEach(function(t){ if (pts[t] || obj[t]) sims.push(t); });
+ var h = '<button class="som voltar" id="voltarRes" aria-label="Voltar" style="margin-bottom:16px">' + ic('voltar') + '</button>', leitura, k = 0;
+ // atraso da animação em cascata + estilo extra opcional (um único atributo style)
+ function d(extra){ return ' style="--d:' + (k++ * .08) + 's;' + (extra || '') + '"'; }
+ if (sims.length >= 2) {
+  h += '<h2 class="sobe"' + d() + '>Você se importa com:</h2><div class="valores">';
+  sims.forEach(function(t){
+   var x = TEMAS[t];
+   h += '<div class="valor sobe"' + d() + '><span class="ico">' + x.i + '</span><div><b>' + esc(x.nome) + '</b><small>' + esc(x.l) + '</small>' +
+        (obj[t] ? '<small class="obj">' + esc(x.o) + '</small>' : '') + '</div></div>';
+  });
+  h += '</div><div class="conclusao sobe"' + d() + '><h2>Lula é o melhor pra sua família.</h2>' +
+       '<span class="data">' + DATA + ' · vote 13</span></div>';
+  leitura = 'Você se importa com: ' + sims.map(function(t){ return TEMAS[t].nome; }).join(', ') + '. Lula é o melhor pra sua família. Dia 25 de outubro, vote 13.';
+ } else {
+  h += '<h2 class="sobe"' + d() + '>Obrigado por responder.</h2>' +
+       '<p class="sobe"' + d('margin-top:8px') + '>Antes de votar, pense em duas coisas:</p><div class="valores">' +
+       '<div class="valor sobe"' + d() + '><span class="ico">👨‍👩‍👧</span><div><b>Sua folga</b><small>Lula: fim da escala 6x1</small></div></div>' +
+       '<div class="valor sobe"' + d() + '><span class="ico">🇧🇷</span><div><b>O Brasil primeiro</b><small>Lula: quem decide são os brasileiros</small></div></div>' +
+       '</div><div class="conclusao sobe"' + d() + '><h2>O voto é seu. Pense com calma.</h2><span class="data">' + DATA + '</span></div>';
+  leitura = 'Obrigado por responder. Antes de votar, pense na sua folga e no Brasil em primeiro lugar. O voto é seu.';
+ }
+ var msg = 'Fiz esse teste rápido sobre o que importa pra nossa família. 3 minutos, faz aí: ' + location.href.split('#')[0];
+ h += '<div class="acoes sobe"' + d() + '>' +
+      '<a class="btn b-zap" href="https://wa.me/?text=' + encodeURIComponent(msg) + '">📲 Mandar no WhatsApp</a>' +
+      '<button class="btn b-claro" id="ouvirRes">' + ic('som') + ' Ouvir resultado</button>' +
+      '<button class="btn b-claro" id="denovo">↺ Fazer de novo</button></div>';
+ // Objeções comuns: primeiro os temas que a pessoa marcou, depois o resto
+ h += '<h2 class="sobe"' + d('margin-top:40px') + '>🤔 O que dizem por aí</h2>' +
+      '<p class="sobe"' + d('margin-top:6px;font-size:18px;color:var(--slate-600)') + '>Toque numa frase pra ver a resposta.</p>';
+ sims.concat(Object.keys(DUV).filter(function(t){ return sims.indexOf(t) < 0; })).forEach(function(t){
+  if (!DUV[t]) return;
+  h += '<h3 class="duv-tema sobe"' + d() + '>' + TEMAS[t].i + ' ' + esc(TEMAS[t].nome) + '</h3><div class="sobe"' + d() + '>' + duvidas(t) + '</div>';
+ });
+ h += '<p class="assina">Não é material de campanha.</p>';
+ $('resultado').innerHTML = h;
+ $('denovo').onclick = iniciaCards;
+ $('voltarRes').onclick = voltar;
+ $('ouvirRes').onclick = function(){ fala(leitura); };
+ mostra('resultado');
+ if (sims.length >= 2) { confete(); vibra([30, 60, 30]); }
+ if (somOn) fala(leitura);
+}
+
+// Volta um passo: do fato pro mesmo card, do card pro anterior, do 1º card pro início
+function voltar(){
+ if ($('folha').classList.contains('on')) { fechaFolha(); return; }
+ if ($('antes').classList.contains('on')) { para(); mostra('inicio'); return; }
+ if (ocupado && fase === 'q') return; // card ainda saindo da tela
+ para();
+ if (fase === 'r') i = CARDS.length - 1;
+ else if (fase === 'q') {
+  if (i === 0) { mostra('antes'); return; }
+  i--;
+ }
+ resp.length = i;
+ mostra('perguntas');
+ novoCard();
+}
+
+// Botão "voltar" do celular: volta um passo em vez de sair do site
+addEventListener('popstate', function(){
+ if ($('inicio').classList.contains('on')) return;
+ voltar();
+ if (!$('inicio').classList.contains('on')) history.pushState({app: 1}, '');
+});
+
+var TXT_ANTES = 'Antes de começar, uma coisa importante. Muita gente acha que a esquerda é só aborto, maconha, banheiro trans e ser contra a religião. Não é. ' +
+ 'A esquerda discute esses temas porque acredita que todo mundo tem direitos. Discutir não é defender. Votar no Lula não faz ninguém ser a favor do aborto. ' +
+ 'O que nos une é a liberdade de discutir ideias. Aqui, a conversa é sobre trabalho, família, Brasil e o seu bolso.';
+
+// Início -> tela "antes de começar" -> cartões
+function comecar(comSom){
+ if (!history.state) history.pushState({app: 1}, '');
+ setSom(!!comSom);
+ mostra('antes');
+ if (somOn) fala(TXT_ANTES);
+}
+
+function iniciaCards(){
+ para();
+ i = 0; resp = [];
+ mostra('perguntas');
+ novoCard();
+}
+
+$('comecar').onclick = function(){ comecar(false); };
+$('comecarSom').onclick = function(){ comecar(true); };
+$('som').onclick = function(){ setSom(!somOn); };
+$('voltar').onclick = voltar;
+$('fechaFolha').onclick = fechaFolha;
+$('entendi').onclick = iniciaCards;
+$('ouvirAntes').onclick = function(){ fala(TXT_ANTES); };
+$('folha').onclick = function(e){ if (e.target === this) fechaFolha(); };
+$('bSim').onclick = function(){ responde(true); };
+$('bNao').onclick = function(){ responde(false); };
+document.addEventListener('keydown', function(e){
+ if (!$('perguntas').classList.contains('on') || ocupado) return;
+ if (e.key === 'ArrowRight') responde(true);
+ if (e.key === 'ArrowLeft') responde(false);
+});
+</script>
+</body>
+</html>
