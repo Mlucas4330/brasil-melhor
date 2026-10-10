@@ -47,14 +47,15 @@ button{font:inherit;cursor:pointer;border:0}
 #inicio::after{width:220px;height:220px;background:var(--blue-600);bottom:-60px;left:-70px;animation:flutua 11s ease-in-out infinite reverse}
 @keyframes flutua{50%{transform:translate(-30px,30px) scale(1.1)}}
 #inicio .box{position:relative;z-index:1;max-width:448px;margin:0 auto;width:100%;display:flex;flex-direction:column;flex:1;justify-content:center}
-.pilula{align-self:flex-start;background:rgb(255 255 255/.15);border:1px solid rgb(255 255 255/.25);border-radius:999px;padding:6px 14px;font-size:15px;font-weight:700;backdrop-filter:blur(4px)}
+.pilula{align-self:flex-start;font-size:15px;font-weight:800;letter-spacing:1px;text-transform:uppercase;opacity:.85}
 #inicio h1{font-size:40px;line-height:1.1;font-weight:900;margin:20px 0 12px;letter-spacing:-.5px}
 #inicio h1 span{color:var(--yellow-300)}
 #inicio .sub{font-size:22px;opacity:.9}
 .convite{font-size:20px;line-height:1.4;background:rgb(255 255 255/.12);border-left:4px solid var(--yellow-400);border-radius:12px;padding:12px 16px;margin-top:4px}
 .convite b{color:var(--yellow-300)}
-.temas{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
-.temas span{background:var(--yellow-400);color:var(--slate-900);font-size:15px;font-weight:800;border-radius:999px;padding:6px 12px}
+.temas{display:flex;flex-wrap:wrap;row-gap:4px;margin-top:20px}
+.temas span{color:var(--yellow-300);font-size:19px;font-weight:800}
+.temas span:not(:last-child)::after{content:"·";margin:0 8px;color:rgb(255 255 255/.6)}
 .acoes-ini{display:grid;gap:12px;margin-top:32px}
 .b-amarelo{background:var(--yellow-400);color:var(--slate-900)}
 .b-vidro{background:rgb(255 255 255/.15);color:#fff;border:2px solid rgb(255 255 255/.4);box-shadow:none}
@@ -96,7 +97,7 @@ button{font:inherit;cursor:pointer;border:0}
 .card.dica{animation:entra .45s var(--mola),balanca 1.2s .6s ease-in-out}
 @keyframes balanca{25%{transform:rotate(-5deg) translateX(-18px)}75%{transform:rotate(5deg) translateX(18px)}}
 .card::before{content:"";position:absolute;inset:0 0 auto;height:8px;background:linear-gradient(90deg,var(--green-600),var(--yellow-400),var(--blue-600))}
-.card .tema{align-self:flex-start;background:var(--green-50);color:var(--green-800);font-size:15px;font-weight:800;border-radius:999px;padding:6px 12px;margin-bottom:16px}
+.card .tema{align-self:flex-start;color:var(--green-700);font-size:15px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;margin-bottom:12px}
 .card .frase{font-size:32px;line-height:1.2;font-weight:900;letter-spacing:-.3px}
 .card .rod{position:absolute;bottom:20px;left:0;right:0;text-align:center;font-size:15px;font-weight:600;color:var(--slate-400)}
 .mini-som{position:absolute;top:24px;right:20px;width:52px;height:52px;padding:0;border-radius:999px;background:var(--slate-100);color:var(--slate-700);display:grid;place-items:center;z-index:2}
@@ -123,8 +124,12 @@ button{font:inherit;cursor:pointer;border:0}
 .fato li{display:flex;gap:12px;font-size:21px;font-weight:600;line-height:1.3}
 .fato li::before{content:"";flex:none;width:12px;height:12px;margin-top:8px;border-radius:999px;background:var(--green-600)}
 .fato a{display:inline-block;margin-top:16px;color:var(--blue-700);font-size:15px;font-weight:600}
-.duv-btn{display:block;width:100%;margin-top:20px;background:var(--slate-100);color:var(--slate-900);border:2px dashed var(--slate-400);border-radius:14px;padding:14px;font-size:19px;font-weight:800}
-.duv-btn:active{transform:scale(.97)}
+.duv-btn{display:flex;align-items:center;gap:12px;width:100%;margin-bottom:10px;background:#fff;color:var(--blue-700);border:2px solid var(--blue-600);border-radius:16px;padding:12px 14px;text-align:left;box-shadow:var(--shadow-lg);transition:transform .15s,box-shadow .15s}
+.duv-btn:active{transform:scale(.97);box-shadow:none;background:#eff6ff}
+.duv-btn > .ic{width:28px;height:28px}
+.duv-btn > .ic:last-child{width:24px;height:24px;margin-left:auto}
+.duv-txt b{display:block;font-size:19px;font-weight:900;line-height:1.2}
+.duv-txt small{display:block;font-size:15px;font-weight:600;color:var(--slate-600);margin-top:2px}
 
 /* ---------- "mas dizem que..." ---------- */
 .duv-tema{font-size:19px;font-weight:900;margin:20px 0 4px;color:var(--slate-700)}
@@ -156,7 +161,7 @@ details.duv[open] summary{color:var(--green-800)}
 /* ---------- resultado ---------- */
 #resultado h2{font-size:30px;line-height:1.15;font-weight:900;letter-spacing:-.3px}
 .valores{display:grid;gap:10px;margin-top:16px}
-.valor{display:flex;align-items:center;gap:14px;background:#fff;border-radius:16px;padding:14px 16px;box-shadow:var(--shadow-lg)}
+.valor{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--slate-200);border-radius:16px;padding:14px 16px}
 .valor .ico{flex:none;width:52px;height:52px;border-radius:14px;background:var(--green-50);display:grid;place-items:center;font-size:28px}
 .valor b{display:block;font-size:20px;line-height:1.2}
 .valor small.obj{color:var(--green-800);font-style:italic;margin-top:6px}
@@ -164,7 +169,7 @@ details.duv[open] summary{color:var(--green-800)}
 .conclusao{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--green-800),var(--green-600));color:#fff;border-radius:24px;padding:24px 20px;margin:20px 0;box-shadow:var(--shadow-xl)}
 .conclusao::after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:var(--yellow-400);opacity:.2;filter:blur(30px);right:-50px;top:-50px}
 .conclusao h2{font-size:28px!important}
-.data{display:inline-block;background:var(--yellow-400);color:var(--slate-900);font-weight:900;border-radius:12px;padding:10px 16px;margin-top:16px;font-size:24px;animation:pulsa 2s ease-in-out infinite}
+.data{display:block;color:var(--yellow-300);font-weight:900;margin-top:12px;font-size:26px}
 @keyframes pulsa{50%{transform:scale(1.05)}}
 .acoes{display:grid;gap:12px}
 .b-zap{background:#25d366;color:#fff}
@@ -384,6 +389,8 @@ var $ = function(id){ return document.getElementById(id); };
 // Ícones SVG (centralizam igual em qualquer celular, ao contrário de emoji)
 var IC = {
  voltar: '<path d="M19 12H5M12 19l-7-7 7-7"/>',
+ seta: '<path d="m9 18 6-6-6-6"/>',
+ balao: '<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M9.5 9.5a2.5 2.5 0 0 1 4.9.7c0 1.6-2.4 2.3-2.4 2.3M12 15.5h.01"/>',
  som: '<path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/>',
  mudo: '<path d="M11 5 6 9H2v6h4l5 4z"/><path d="m22 9-6 6M16 9l6 6"/>',
  sim: '<path d="M20 6 9 17l-5-5"/>',
@@ -511,8 +518,9 @@ function fato(d, sim){
  f.innerHTML = '<div class="tag"><span>' + (a.p ? '💡 VOCÊ SABIA?' : '🤔 PENSE NISSO') + '</span></div><div class="corpo">' +
   '<div class="reacao"></div><ul></ul>' +
   (d.fonte ? '<a target="_blank" rel="noopener">Ver a fonte ↗</a>' : '') +
-  (DUV[d.t] ?'<button class="duv-btn">🤔 Mas dizem que...</button>' : '') +
-  '</div><div class="pe"><button class="btn b-verde">Próximo →</button></div>';
+  '</div><div class="pe">' +
+  (DUV[d.t] ? '<button class="duv-btn">' + ic('balao') + '<span class="duv-txt"><b>Mas dizem que...</b><small>Toque e veja ' + DUV[d.t].length + ' respostas</small></span>' + ic('seta') + '</button>' : '') +
+  '<button class="btn b-verde">Próximo →</button></div>';
  f.querySelector('.reacao').textContent = reacao;
  var ul = f.querySelector('ul');
  a.x.forEach(function(t, k){
@@ -523,7 +531,7 @@ function fato(d, sim){
  if (d.fonte) f.querySelector('a').href = d.fonte;
  var leitura = reacao + ' ' + a.x.join(' ');
  f.querySelector('.tag').appendChild(botaoSom(function(){ fala(leitura, d.ax); }));
- f.querySelector('.pe button').onclick = proximo;
+ f.querySelector('.pe .b-verde').onclick = proximo;
  var db = f.querySelector('.duv-btn');
  if (db) db.onclick = function(){ abreFolha(d.t); };
  $('palco').innerHTML = '';
