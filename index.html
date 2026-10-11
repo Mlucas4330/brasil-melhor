@@ -20,9 +20,9 @@
  --green-50:#f0fdf4;--green-100:#dcfce7;--green-500:#22c55e;--green-600:#16a34a;--green-700:#15803d;--green-800:#166534;--green-900:#14532d;
  --emerald-600:#059669;--yellow-300:#fde047;--yellow-400:#facc15;--blue-600:#2563eb;--blue-700:#1d4ed8;
  --slate-50:#f8fafc;--slate-100:#f1f5f9;--slate-200:#e2e8f0;--slate-400:#94a3b8;--slate-500:#64748b;--slate-600:#475569;--slate-700:#334155;--slate-900:#0f172a;
- --shadow-lg:0 10px 15px -3px rgb(0 0 0/.1),0 4px 6px -4px rgb(0 0 0/.1);
- --shadow-xl:0 20px 25px -5px rgb(0 0 0/.1),0 8px 10px -6px rgb(0 0 0/.1);
- --shadow-2xl:0 25px 50px -12px rgb(0 0 0/.25);
+ --shadow-lg:0 10px 15px -3px rgb(15 23 42/.1),0 4px 6px -4px rgb(15 23 42/.1);
+ --shadow-xl:0 20px 25px -5px rgb(15 23 42/.1),0 8px 10px -6px rgb(15 23 42/.1);
+ --shadow-2xl:0 25px 50px -12px rgb(15 23 42/.22);
  --mola:cubic-bezier(.34,1.56,.64,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -37,25 +37,19 @@ button{font:inherit;cursor:pointer;border:0}
 .btn:active{transform:scale(.96);box-shadow:none}
 .sobe{opacity:0;animation:sobe .5s var(--mola) forwards;animation-delay:var(--d,0s)}
 @keyframes sobe{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
-.assina{margin-top:auto;padding-top:20px;font-size:14px;color:var(--slate-500);text-align:center}
+.assina{margin-top:auto;padding-top:20px;font-size:14px;color:var(--slate-600);text-align:center}
 
 /* ---------- início ---------- */
-#inicio{max-width:none;color:#fff;background:linear-gradient(135deg,var(--green-900),var(--green-700),var(--emerald-600),var(--green-800));background-size:300% 300%;animation:fundo 12s ease infinite;position:relative;overflow:hidden}
-@keyframes fundo{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+#inicio{max-width:none;color:#fff;background:linear-gradient(135deg,var(--green-900),var(--green-700),var(--emerald-600),var(--green-800));position:relative;overflow:hidden}
 #inicio::before,#inicio::after{content:"";position:absolute;border-radius:50%;filter:blur(40px);opacity:.35;pointer-events:none}
-#inicio::before{width:260px;height:260px;background:var(--yellow-400);top:-80px;right:-80px;animation:flutua 9s ease-in-out infinite}
-#inicio::after{width:220px;height:220px;background:var(--blue-600);bottom:-60px;left:-70px;animation:flutua 11s ease-in-out infinite reverse}
-@keyframes flutua{50%{transform:translate(-30px,30px) scale(1.1)}}
+#inicio::before{width:260px;height:260px;background:var(--yellow-400);top:-80px;right:-80px}
+#inicio::after{width:220px;height:220px;background:var(--blue-600);bottom:-60px;left:-70px}
 #inicio .box{position:relative;z-index:1;max-width:448px;margin:0 auto;width:100%;display:flex;flex-direction:column;flex:1;justify-content:center}
 .pilula{align-self:flex-start;font-size:15px;font-weight:800;letter-spacing:1px;text-transform:uppercase;opacity:.85}
 #inicio h1{font-size:40px;line-height:1.1;font-weight:900;margin:20px 0 12px;letter-spacing:-.5px}
 #inicio h1 span{color:var(--yellow-300)}
-#inicio .sub{font-size:22px;opacity:.9}
 .convite{font-size:20px;line-height:1.4;background:rgb(255 255 255/.12);border-left:4px solid var(--yellow-400);border-radius:12px;padding:12px 16px;margin-top:4px}
 .convite b{color:var(--yellow-300)}
-.temas{display:flex;flex-wrap:wrap;row-gap:4px;margin-top:20px}
-.temas span{color:var(--yellow-300);font-size:19px;font-weight:800}
-.temas span:not(:last-child)::after{content:"·";margin:0 8px;color:rgb(255 255 255/.6)}
 .acoes-ini{display:grid;gap:12px;margin-top:32px}
 .b-amarelo{background:var(--yellow-400);color:var(--slate-900)}
 .b-vidro{background:rgb(255 255 255/.15);color:#fff;border:2px solid rgb(255 255 255/.4);box-shadow:none}
@@ -81,7 +75,7 @@ button{font:inherit;cursor:pointer;border:0}
 .topo{display:flex;align-items:center;gap:12px}
 .barra{flex:1;height:12px;background:var(--slate-200);border-radius:999px;overflow:hidden}
 .barra i{display:block;height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,var(--green-600),var(--yellow-400));transition:width .5s var(--mola)}
-.num{font-size:16px;font-weight:800;color:var(--slate-500);min-width:44px;text-align:right}
+.num{font-size:16px;font-weight:800;color:var(--slate-600);min-width:44px;text-align:right}
 .som{flex:none;width:48px;height:48px;padding:0;border-radius:999px;background:#fff;color:var(--slate-700);box-shadow:var(--shadow-lg);display:grid;place-items:center;transition:background .2s}
 .som.on{background:var(--yellow-400)}
 .ic{display:block;flex:none;width:1.15em;height:1.15em;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
@@ -97,9 +91,9 @@ button{font:inherit;cursor:pointer;border:0}
 .card.dica{animation:entra .45s var(--mola),balanca 1.2s .6s ease-in-out}
 @keyframes balanca{25%{transform:rotate(-5deg) translateX(-18px)}75%{transform:rotate(5deg) translateX(18px)}}
 .card::before{content:"";position:absolute;inset:0 0 auto;height:8px;background:linear-gradient(90deg,var(--green-600),var(--yellow-400),var(--blue-600))}
-.card .tema{align-self:flex-start;color:var(--green-700);font-size:15px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;margin-bottom:12px}
+.card .tema{align-self:flex-start;color:var(--green-700);font-size:16px;font-weight:800;margin-bottom:12px}
 .card .frase{font-size:32px;line-height:1.2;font-weight:900;letter-spacing:-.3px}
-.card .rod{position:absolute;bottom:20px;left:0;right:0;text-align:center;font-size:15px;font-weight:600;color:var(--slate-400)}
+.card .rod{position:absolute;bottom:20px;left:0;right:0;text-align:center;font-size:15px;font-weight:600;color:var(--slate-500)}
 .mini-som{position:absolute;top:24px;right:20px;width:52px;height:52px;padding:0;border-radius:999px;background:var(--slate-100);color:var(--slate-700);display:grid;place-items:center;z-index:2}
 .mini-som:active{background:var(--yellow-300)}
 .tinta{position:absolute;inset:0;pointer-events:none;opacity:0}
@@ -111,12 +105,12 @@ button{font:inherit;cursor:pointer;border:0}
 .botoes{display:flex;gap:12px;margin-top:20px}
 .botoes .btn{flex:1;padding:20px 8px;font-size:22px}
 .b-nao{background:#fff;color:var(--slate-600);border:3px solid var(--slate-200)}
-.b-sim{background:var(--green-600);color:#fff}
+.b-sim{background:var(--green-700);color:#fff}
 
 /* ---------- você sabia ---------- */
 .fato{display:flex;flex-direction:column;animation:vira .5s var(--mola);transform-origin:center}
 @keyframes vira{from{transform:rotateY(-80deg) scale(.9);opacity:0}}
-.fato .tag{display:flex;align-items:center;justify-content:space-between;background:var(--yellow-400);font-weight:900;font-size:18px;padding:16px 20px 16px 24px;letter-spacing:.5px}
+.fato .tag{display:flex;align-items:center;justify-content:space-between;background:var(--yellow-400);font-weight:900;font-size:19px;padding:16px 20px 16px 24px}
 .fato .tag .mini-som{position:static;width:44px;height:44px;font-size:20px;background:rgb(255 255 255/.5)}
 .fato .corpo{padding:20px 24px;flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
 .reacao{font-size:26px;font-weight:900;line-height:1.2;margin-bottom:16px}
@@ -145,34 +139,32 @@ details.duv[open] summary{color:var(--green-800)}
 .resp li{display:flex;gap:10px;font-size:19px;line-height:1.35}
 .resp li::before{content:"✓";flex:none;color:var(--green-600);font-weight:900}
 .resp-pe{display:flex;align-items:center;gap:16px;margin-top:12px}
-.ouvir-duv{display:inline-flex;align-items:center;gap:6px;background:var(--slate-100);color:var(--slate-700);border-radius:999px;padding:8px 14px;font-size:16px;font-weight:700}
+.ouvir-duv{display:inline-flex;align-items:center;gap:6px;background:var(--slate-100);color:var(--slate-700);border-radius:12px;padding:8px 14px;font-size:16px;font-weight:700}
 .resp-pe a{color:var(--blue-700);font-size:15px;font-weight:600}
 #folha{position:fixed;inset:0;z-index:20;background:rgb(15 23 42/.55);display:none;align-items:flex-end}
 #folha.on{display:flex;animation:surge .2s}
 @keyframes surge{from{opacity:0}}
-.folha-box{width:100%;max-width:448px;margin:0 auto;max-height:88vh;overflow:auto;background:var(--slate-100);border-radius:24px 24px 0 0;padding:20px 16px calc(24px + env(safe-area-inset-bottom));animation:sobeFolha .35s var(--mola)}
+.folha-box{width:100%;max-width:448px;margin:0 auto;max-height:88vh;max-height:88dvh;overflow:auto;background:var(--slate-100);border-radius:24px 24px 0 0;padding:20px 16px calc(24px + env(safe-area-inset-bottom));animation:sobeFolha .35s var(--mola)}
 @keyframes sobeFolha{from{transform:translateY(100%)}}
 .folha-topo{display:flex;align-items:center;justify-content:space-between;font-size:22px}
-.fecha{display:inline-flex;align-items:center;gap:6px;background:#fff;color:var(--slate-700);border-radius:999px;padding:10px 16px;font-size:16px;font-weight:800;box-shadow:var(--shadow-lg)}
+.fecha{display:inline-flex;align-items:center;gap:6px;background:#fff;color:var(--slate-700);border-radius:12px;padding:10px 16px;font-size:16px;font-weight:800;box-shadow:var(--shadow-lg)}
 .folha-sub{font-size:17px;color:var(--slate-600);margin-top:4px}
-.fato .pe{flex:none;padding:12px 20px 20px;box-shadow:0 -12px 16px -12px rgb(0 0 0/.12)}
-.b-verde{background:var(--green-600);color:#fff}
+.fato .pe{flex:none;padding:12px 20px 20px;box-shadow:0 -12px 16px -12px rgb(15 23 42/.12)}
+.b-verde{background:var(--green-700);color:#fff}
 
 /* ---------- resultado ---------- */
 #resultado h2{font-size:30px;line-height:1.15;font-weight:900;letter-spacing:-.3px}
 .valores{display:grid;gap:10px;margin-top:16px}
 .valor{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--slate-200);border-radius:16px;padding:14px 16px}
-.valor .ico{flex:none;width:52px;height:52px;border-radius:14px;background:var(--green-50);display:grid;place-items:center;font-size:28px}
+.valor .ico{flex:none;width:52px;height:52px;border-radius:12px;background:var(--green-50);display:grid;place-items:center;font-size:28px}
 .valor b{display:block;font-size:20px;line-height:1.2}
-.valor small.obj{color:var(--green-800);font-style:italic;margin-top:6px}
 .valor small{display:block;font-size:17px;color:var(--slate-600);font-weight:600;margin-top:2px}
 .conclusao{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--green-800),var(--green-600));color:#fff;border-radius:24px;padding:24px 20px;margin:20px 0;box-shadow:var(--shadow-xl)}
 .conclusao::after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:var(--yellow-400);opacity:.2;filter:blur(30px);right:-50px;top:-50px}
 .conclusao h2{font-size:28px!important}
 .data{display:block;color:var(--yellow-300);font-weight:900;margin-top:12px;font-size:26px}
-@keyframes pulsa{50%{transform:scale(1.05)}}
 .acoes{display:grid;gap:12px}
-.b-zap{background:#25d366;color:#fff}
+.b-zap{background:#25d366;color:var(--slate-900)}
 .b-claro{background:#fff;color:var(--slate-700)}
 
 /* confete */
@@ -209,13 +201,10 @@ details.duv[open] summary{color:var(--green-800)}
 
 <section id="inicio" class="tela on">
  <div class="box">
-  <span class="pilula sobe">🇧🇷 2º turno 2026</span>
+  <span class="pilula sobe">2º turno 2026</span>
   <h1 class="sobe" style="--d:.1s">Descubra o que <span>você pensa</span> em 3 minutos.</h1>
   <p class="convite sobe" style="--d:.16s">Nesse 2º turno, vou de Lula e te convido a ler <b>de mente aberta</b>, pra gente refletir junto.</p>
-  <div class="temas sobe" style="--d:.44s">
-   <span>Trabalho</span><span>Família</span><span>Brasil</span><span>Justiça</span><span>Bolso</span>
-  </div>
-  <div class="acoes-ini sobe" style="--d:.52s">
+  <div class="acoes-ini sobe" style="--d:.3s">
    <button class="btn b-amarelo" id="comecar">Começar →</button>
    <button class="btn b-vidro" id="comecarSom"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg> Começar ouvindo</button>
   </div>
@@ -230,11 +219,11 @@ details.duv[open] summary{color:var(--green-800)}
   <p class="antes-mito sobe" style="--d:.16s">Muita gente acha que a esquerda é só aborto, maconha, banheiro trans e ser contra a religião.</p>
   <p class="antes-nao sobe" style="--d:.24s">Não é.</p>
   <ul class="antes-lista">
-   <li class="sobe" style="--d:.32s">A esquerda <b>discute</b> esses temas porque acredita que todo mundo tem direitos.</li>
+   <li class="sobe" style="--d:.32s">A esquerda discute esses temas porque acredita que todo mundo tem direitos.</li>
    <li class="sobe" style="--d:.4s"><b>Discutir não é defender.</b> Votar no Lula não faz ninguém ser a favor do aborto.</li>
    <li class="sobe" style="--d:.48s">O que nos une é a <b>liberdade de discutir ideias</b>.</li>
   </ul>
-  <p class="antes-foco sobe" style="--d:.56s">Aqui, a conversa é sobre <b>trabalho, família, Brasil e o seu bolso</b>.</p>
+  <p class="antes-foco sobe" style="--d:.56s">Aqui, a conversa é sobre trabalho, família, Brasil e o seu bolso.</p>
  </div>
  <button class="btn b-verde sobe" style="--d:.64s;margin-top:20px" id="entendi">Entendi, vamos lá →</button>
 </section>
@@ -243,7 +232,7 @@ details.duv[open] summary{color:var(--green-800)}
  <div class="topo">
   <button class="som voltar" id="voltar" aria-label="Voltar"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
   <div class="barra"><i id="prog"></i></div>
-  <span class="num" id="num">1/10</span>
+  <span class="num" id="num">1/8</span>
   <button class="som" id="som" aria-label="Ligar ou desligar o som"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="m22 9-6 6M16 9l6 6"/></svg></button>
  </div>
  <div class="palco" id="palco"></div>
@@ -271,7 +260,7 @@ var DATA = '25/10';
 var SITE = 'https://brasil-melhor.vercel.app/';
 
 /*
- 5 temas x 2 cartões: pessoal/valor + objeção.
+ 8 cartões em 5 temas, intercalados.
  Cada cartão:
   t      = tema (chave de TEMAS)
   f      = frase do cartão
@@ -279,108 +268,100 @@ var SITE = 'https://brasil-melhor.vercel.app/';
            r = reação curta, x = fato em 1 a 3 frases curtas
            p:1 = essa resposta mostra que a pessoa se importa com o tema
            o:1 = essa resposta é a objeção do tema (o resultado responde a ela com respeito)
-  fonte  = link. TODO: preencher TODAS antes de publicar.
+  fonte  = link (pode ficar dentro de s / n quando cada resposta cita um fato diferente)
   af/ax  = (opcional) mp3 com voz gravada da frase / do fato. Sem mp3, o celular lê o texto.
 */
 var CARDS = [
- /* ---- 6x1 ---- */
+ /* temas intercalados: nunca dois cartões seguidos do mesmo assunto.
+    fonte dentro de s/n = link daquela resposta (checado em out/2026) */
  {t:'6x1', f:'Alguém da sua casa trabalha 6 dias por semana?',
-  s:{p:1, r:'Então esta eleição também é sobre o domingo dele.', x:['Na escala 6x1, a folga é 1 dia só.','Lula defende acabar com a 6x1, sem cortar salário.']},
-  n:{r:'Que bom pra sua casa.', x:['Agora pense em quem te atende no sábado e no domingo: o caixa, o frentista, a moça da padaria.','Muitos saem antes do filho acordar e chegam depois dele dormir.','Lula defende acabar com a 6x1, sem cortar salário.']},
-  fonte:''},
- {t:'6x1', f:'Diminuir a jornada vai quebrar o pequeno comerciante.',
-  s:{o:1, r:'É uma preocupação justa.', x:['Em 1988, a jornada caiu de 48h pra 44h.','Estudos mostram que o emprego não caiu por causa disso.','A França trabalha 35h por semana e segue entre as maiores economias do mundo.']},
-  n:{p:1, r:'Também achamos.', x:['Trabalhador descansado rende mais e adoece menos.','Isso é bom pro patrão também.']},
-  fonte:''}, // TODO: fonte do estudo de 1988 (Gonzaga, Menezes-Filho e Camargo, 2003)
-
- /* ---- trabalho por hora ---- */
- {t:'hora', f:'Você pagaria suas contas sem saber quanto vai ganhar no mês?',
-  s:{r:'Você é dos poucos que conseguem.', x:['Agora imagine seu filho começando a vida assim.','Sem saber se vai ganhar R$ 300 ou R$ 1.500 no mês.','Como ele aluga uma casa? Como financia uma moto?']},
-  n:{p:1, r:'Quase ninguém consegue.', x:['Por isso salário fixo é segurança pra família.']},
-  fonte:''},
- {t:'hora', f:'Trabalho por hora dá liberdade pra quem quer trabalhar mais.',
-  s:{o:1, r:'Pra alguns, pode ser.', x:['Mas quem escolhe as horas é o patrão, não você.','Se ele não chamar, você não ganha.']},
-  n:{p:1, r:'Exato.', x:['Quem escolhe as horas é o patrão.','O PT votou contra o trabalho por hora em 2017.']},
-  fonte:''}, // TODO: se houver proposta documentada do adversário sobre trabalho por hora, citar aqui com fonte
-
- /* ---- soberania ---- */
+  s:{p:1, r:'Então esta eleição também é sobre o domingo dele.', x:['Na escala 6x1, a folga é 1 dia só.','Lula defende acabar com a 6x1, sem cortar salário.'],
+     fonte:'https://www.poder360.com.br/poder-governo/lula-pressiona-congresso-pelo-fim-da-escala-6-x-1/'},
+  n:{r:'Que bom pra sua casa.', x:['Agora pense em quem te atende no sábado e no domingo: o caixa, o frentista, a moça da padaria.','Muitos saem antes do filho acordar e chegam depois dele dormir.','Lula defende acabar com a 6x1, sem cortar salário.'],
+     fonte:'https://www.poder360.com.br/poder-governo/lula-pressiona-congresso-pelo-fim-da-escala-6-x-1/'}},
  {t:'patria', f:'Ficar do lado dos EUA é bom pro Brasil.',
-  s:{o:1, r:'Ser amigo dos EUA é bom, sim.', x:['Mas amigo não é empregado.','Em 2025, os EUA puseram tarifa de 50% em produtos do Brasil.','Quem pagou foi o produtor e o trabalhador daqui.']},
-  n:{p:1, r:'Concordamos.', x:['Dá pra ser amigo dos EUA sem obedecer.','Lula negocia com todos: EUA, China e Europa.']},
-  fonte:''},
- {t:'patria', f:'Patriota defende o Brasil em primeiro lugar.',
-  s:{p:1, r:'Isso.', x:['Patriotismo é defender o emprego e a indústria daqui.','Não é pedir pra outro país punir o Brasil.']},
-  n:{r:'Talvez você ache que valores vêm antes do país. Faz sentido.', x:['Mas que valor justifica ir a outro país pedir punições contra o Brasil?','Em 2025, Eduardo Bolsonaro fez isso nos EUA.','Patriota defende o próprio país, mesmo quando discorda do governo.']},
-  fonte:''},
-
- /* ---- justiça ---- */
- {t:'justica', f:'Processo anulado não quer dizer que a pessoa é inocente.',
-  s:{o:1, r:'É verdade. Anulado não é o mesmo que inocentado.', x:['Mas o juiz que condenou Lula depois virou ministro de Bolsonaro. Por isso o STF anulou tudo.','Sem julgamento justo, não existe condenação válida. Hoje Lula não tem nenhuma.','Essa regra vale pra todo mundo, inclusive pra quem você apoia.']},
-  n:{p:1, r:'Pois é.', x:['O juiz que condenou Lula depois virou ministro de Bolsonaro.','Por isso o STF anulou as condenações. Hoje Lula não tem nenhuma.']},
-  fonte:''},
- {t:'justica', f:'Ninguém está acima da lei. Nem parente de político.',
-  s:{p:1, r:'Concordamos.', x:['Foram a PF e a CGU deste governo que descobriram a fraude do INSS.','A investigação continua, doa a quem doer.']},
-  n:{r:'Talvez você sinta que a lei não vale igual pra todos. Muita gente sente isso.', x:['A saída é cobrar a mesma regra pra todo mundo, de esquerda e de direita.','A PF deste governo investigou a fraude do INSS, mesmo derrubando um ministro do próprio governo.','Lei que só vale pro outro lado não é justiça.']},
-  fonte:''}, // TODO: confirmar o status atual das investigações envolvendo Lulinha antes de citar o nome dele
-
- /* ---- bolso ---- */
+  s:{o:1, r:'Ser amigo dos EUA é bom. Mas ficar do lado deles não é bem assim.', x:['Amizade boa é de igual pra igual.','Em 2025, Eduardo Bolsonaro se mudou para os EUA e pediu punições contra autoridades brasileiras. Em julho veio a tarifa de 50%.','Quem pagou foi o trabalhador daqui: só no setor de madeira foram 4 mil demissões.'],
+     fonte:'https://www.infomoney.com.br/politica/eduardo-bolsonaro-agradece-tarifa-de-trump-e-pede-apoio-de-sancoes-contra-moraes/'},
+  n:{p:1, r:'Você tem razão: o Brasil não precisa escolher lado.', x:['O Brasil pode fazer negócio com os EUA sem obedecer a eles.','Foi negociando, sem baixar a cabeça, que o Brasil conseguiu derrubar parte da tarifa em novembro de 2025.'],
+     fonte:'https://www.jb.com.br/economia/2025/11/1057696-trump-zera-tarifas-do-brasil-ao-retirar-adicional-de-40-de-produtos-como-cafe-carne-e-combustiveis.html'}},
  {t:'bolso', f:'Alguém na sua casa ganha até R$ 5 mil por mês?',
-  s:{p:1, r:'Então essa pessoa não paga mais Imposto de Renda.', x:['Desde 2026, quem ganha até R$ 5 mil está isento.','Foi uma lei do governo Lula.']},
-  n:{r:'Então sua casa ganha um pouco mais. Ótimo.', x:['Pense na sua faxineira, no seu funcionário, no sobrinho que começou a trabalhar.','Quem ganha R$ 5 mil agora economiza cerca de R$ 4 mil por ano em imposto.','Esse dinheiro volta pro comércio do seu bairro.']},
-  fonte:''},
+  s:{p:1, r:'Então essa pessoa não paga mais Imposto de Renda.', x:['Desde 2026, quem ganha até R$ 5 mil está isento.','Foi uma lei do governo Lula.'],
+     fonte:'https://www.gov.br/receitafederal/pt-br/assuntos/meu-imposto-de-renda/tabelas/2026'},
+  n:{r:'Então sua casa ganha um pouco mais. Ótimo.', x:['Pense na sua faxineira, no seu funcionário, no sobrinho que começou a trabalhar.','Quem ganha R$ 5 mil agora economiza cerca de R$ 4 mil por ano em imposto.','Esse dinheiro volta pro comércio do seu bairro.'],
+     fonte:'https://borainvestir.b3.com.br/noticias/lei-que-amplia-isencao-do-ir-para-quem-ganha-ate-r-5-mil-sera-sancionada-hoje-veja-a-economia-por-faixa-salarial/'}},
+ {t:'justica', f:'Os processos do Lula foram anulados, mas isso não prova que ele é inocente.',
+  s:{o:1, r:'Muita gente pensa assim. Mas a história não é bem essa.', x:['O triplex e o sítio, centro das acusações, nunca estiveram no nome de Lula.','Sem julgamento justo, nenhuma condenação vale. Hoje ele não tem nenhuma.','Essa regra vale pra todo mundo, inclusive pra quem você apoia.'],
+     fonte:'https://www.poder360.com.br/justica/justica-arquiva-caso-do-triplex-contra-lula/'},
+  n:{p:1, r:'Você tem razão: o julgamento não foi justo.', x:['O juiz que condenou Lula no caso do triplex depois virou ministro de Bolsonaro.','O STF declarou esse juiz parcial. E anulou as condenações porque o caso nem deveria ter sido julgado em Curitiba.'],
+     fonte:'https://diariodonordeste.verdesmares.com.br/politica/apos-carmen-lucia-recuar-stf-decide-que-moro-foi-parcial-ao-condenar-lula-no-caso-do-triplex-1.3064045'}},
+ {t:'hora', f:'Trabalho por hora dá liberdade pra quem quer trabalhar mais.',
+  s:{o:1, r:'Parece liberdade, mas não é bem assim.', x:['No trabalho por hora, quem escolhe as horas é o patrão.','Se ele não chamar, você não ganha. E as contas chegam do mesmo jeito.'],
+     fonte:'https://www.dieese.org.br/boletimempregoempauta/2026/boletimEmpregoPauta33.pdf'},
+  n:{p:1, r:'Você tem razão: no trabalho por hora, quem manda é o patrão.', x:['Pra quem tem conta pra pagar, liberdade é saber quanto vai entrar no fim do mês.','O PT votou contra a reforma trabalhista de 2017, que criou o trabalho por hora.'],
+     fonte:'https://congressoemfoco.com.br/noticias/reforma-trabalhista-como-os-deputados-votaram-por-partido'}},
+ {t:'6x1', f:'Diminuir a jornada vai quebrar o pequeno comerciante.',
+  s:{o:1, r:'Entendemos a preocupação, mas não é bem assim.', x:['Em 1988, a jornada caiu de 48h pra 44h.','Um estudo da PUC-Rio mostrou que isso não aumentou o desemprego no ano seguinte.','Na França, a jornada legal é de 35h, e o país segue entre as 10 maiores economias do mundo.'],
+     fonte:'https://ideas.repec.org/a/fgv/epgrbe/v57y2003i2a843.html'},
+  n:{p:1, r:'Você tem razão: dá pra fazer sem quebrar ninguém.', x:['E tem mais: jornada longa demais faz mal. Segundo a OMS, quem trabalha 55h ou mais por semana tem 35% mais risco de AVC.','Trabalhador doente é prejuízo pro patrão também.'],
+     fonte:'https://www.who.int/news/item/17-05-2021-long-working-hours-increasing-deaths-from-heart-disease-and-stroke-who-ilo'}},
  {t:'bolso', f:'Governo que gasta muito deixa o país endividado.',
-  s:{o:1, r:'É uma preocupação séria.', x:['O governo anterior adiou dívidas da União (os precatórios).','Em 2023, o governo Lula pagou R$ 92 bilhões dessas contas atrasadas.']},
-  n:{p:1, r:'Depende do gasto.', x:['Remédio de graça no Farmácia Popular evita internação, que custa muito mais.','E o dinheiro de quem recebe gira no comércio do bairro.']},
-  fonte:''}
+  s:{o:1, r:'É uma preocupação séria, mas a conta não é tão simples.', x:['O governo anterior adiou dívidas da União (os precatórios).','Em 2023, o governo Lula pagou R$ 92 bilhões em precatórios, a maior parte de contas atrasadas.'],
+     fonte:'https://istoedinheiro.com.br/brasil-registra-deficit-primario-de-21-do-pib-em-2023/'},
+  n:{p:1, r:'Você tem razão: depende do gasto.', x:['Gasto ruim é obra parada e desvio. Gasto com saúde e aposentadoria é cuidar de gente.','Desde 2023, o salário mínimo sobe acima da inflação. A aposentadoria de quem ganha um mínimo sobe junto.'],
+     fonte:'https://agenciabrasil.ebc.com.br/economia/noticia/2025-12/novo-salario-minimo-injetara-r-817-bi-na-economia-estima-dieese'}},
+ {t:'justica', f:'Ninguém está acima da lei. Nem parente de político.',
+  s:{p:1, r:'Concordamos.', x:['Foram a PF e a CGU deste governo que investigaram e expuseram a fraude do INSS.','Se houver indício contra parente de presidente, de qualquer presidente, tem que investigar e punir.'],
+     fonte:'https://www.poder360.com.br/poder-governo/lupi-pede-demissao-apos-fraudes-no-inss/'},
+  n:{r:'Talvez você sinta que a lei não vale igual pra todos. Muita gente sente isso.', x:['A saída é cobrar a mesma regra pra todo mundo, de esquerda e de direita.','A investigação da fraude do INSS levou à saída de um ministro do próprio governo.'],
+     fonte:'https://www.poder360.com.br/poder-governo/lupi-pede-demissao-apos-fraudes-no-inss/'}}
 ];
 
-// Resultado: i = ícone, nome = valor da pessoa, l = o que o Lula faz, o = resposta à objeção (se ela concordou com a objeção)
+// Resultado: i = ícone, nome = valor da pessoa, l = o que o Lula faz
 var TEMAS = {
- '6x1':   {i:'👨‍👩‍👧', nome:'Folga com a família', l:'Lula: fim da escala 6x1 sem cortar salário', o:'Sobre o comércio: em 1988 a jornada caiu e o emprego não.'},
- hora:    {i:'💼', nome:'Salário garantido', l:'Lula: carteira assinada, não pagamento por hora', o:'No trabalho por hora, quem escolhe as horas é o patrão.'},
- patria:  {i:'🇧🇷', nome:'Brasil em 1º lugar', l:'Lula: amigo de todos, empregado de ninguém', o:'Amizade com os EUA, sim. Obedecer, não.'},
- justica: {i:'⚖️', nome:'Justiça pra todos', l:'Lula: nenhuma condenação e PF livre pra investigar', o:'Julgamento justo vale pra todo mundo.'},
- bolso:   {i:'💰', nome:'Dinheiro no bolso', l:'Lula: zero IR até R$ 5 mil e remédio de graça', o:'Lula pagou R$ 92 bi de dívidas atrasadas.'}
+ '6x1':   {i:'👨‍👩‍👧', nome:'Folga com a família', l:'Lula: fim da escala 6x1 sem cortar salário'},
+ hora:    {i:'💼', nome:'Salário garantido', l:'Lula: carteira assinada e salário garantido'},
+ patria:  {i:'🇧🇷', nome:'Brasil em 1º lugar', l:'Lula: negocia com EUA, China e Europa'},
+ justica: {i:'⚖️', nome:'Justiça pra todos', l:'Lula: nenhuma condenação e PF livre pra investigar'},
+ bolso:   {i:'💰', nome:'Dinheiro no bolso', l:'Lula: zero IR até R$ 5 mil e remédio de graça'}
 };
 
 /*
- "Mas dizem que...": objeções comuns por tema e a resposta.
+ "Mas dizem que...": objeções comuns.
+  c = em qual cartão do tema aparece (0 = primeiro, 1 = segundo). Cada objeção aparece em um cartão só,
+      e nunca repete o que o próprio cartão já disse. No resultado aparecem todas, agrupadas por tema.
   q = a objeção, do jeito que as pessoas falam
   a = resposta em 2 ou 3 frases curtas
-  fonte = link. TODO: preencher antes de publicar.
+  fonte = link (checado em out/2026). Vazio = argumento, não precisa de fonte.
 */
 var DUV = {
  '6x1': [
-  {q:'"Vai quebrar as empresas."', a:['Em 1988, a jornada caiu de 48h pra 44h. As empresas não quebraram e o emprego não caiu.','A França trabalha 35h por semana e segue sendo uma das maiores economias do mundo.'], fonte:''},
-  {q:'"Vai gerar desemprego."', a:['O comércio que abre todo dia vai precisar de mais gente pra cobrir as folgas.','Isso pode abrir vagas, não fechar.'], fonte:''},
-  {q:'"Ninguém vai produzir mais nada."', a:['Em 2022, 61 empresas do Reino Unido testaram trabalhar 4 dias por semana.','56 delas quiseram continuar depois do teste.','Trabalhador descansado falta menos e rende mais.'], fonte:''},
-  {q:'"Os preços vão subir."', a:['Pode haver algum custo no começo, é verdade.','Mas trabalhador com folga também gasta: no comércio, no lazer, no turismo do bairro. Esse dinheiro gira.'], fonte:''},
-  {q:'"Um dia de folga já basta."', a:['Faça a conta: 6 dias de trabalho e 1 dia pra lavar roupa, ir ao mercado e resolver a vida.','Sobra zero dia pra família.','Até a Bíblia separa um dia só pro descanso.'], fonte:''},
-  {q:'"Isso é coisa de quem não quer trabalhar."', a:['Quem trabalha 6x1 é o caixa, o frentista, o repositor, o segurança. Gente que levanta cedo.','Querer um domingo com a família não é preguiça.'], fonte:''}
+  {c:0, q:'"Um dia de folga já basta."', a:['Faça a conta: 6 dias de trabalho e 1 dia pra lavar roupa, ir ao mercado e resolver a vida.','Sobra zero dia pra família.','Até a Bíblia separa um dia só pro descanso.'], fonte:''},
+  {c:0, q:'"Isso é coisa de quem não quer trabalhar."', a:['É gente que levanta às 5h e pega dois ônibus pra chegar no trabalho.','Pedir um domingo com a família é pedir o mínimo.'], fonte:''},
+  {c:1, q:'"Vai gerar desemprego."', a:['O comércio que abre todo dia vai precisar de mais gente pra cobrir as folgas.','Isso pode abrir vagas.'], fonte:''},
+  {c:1, q:'"Ninguém vai produzir mais nada."', a:['Em 2022, 61 empresas do Reino Unido testaram trabalhar 4 dias por semana.','56 delas quiseram continuar depois do teste.'], fonte:'https://www.theregister.com/2023/02/21/4_day_work_week/'},
+  {c:1, q:'"Os preços vão subir."', a:['Pode haver algum custo no começo, é verdade.','Mas trabalhador com folga também consome: lazer, restaurante, passeio. Isso movimenta outros negócios.'], fonte:''}
  ],
  hora: [
-  {q:'"Com trabalho por hora, mais gente vai ter emprego."', a:['O trabalho por hora (intermitente) existe desde 2017.','Pesquisas do DIEESE mostram que muitos ficam meses sem ser chamados e, na média, ganham menos que um salário mínimo.'], fonte:''}, // TODO: confirmar números do DIEESE
-  {q:'"O trabalhador escolhe quando quer trabalhar."', a:['Ele pode recusar um chamado. Mas quem recusa costuma deixar de ser chamado.','Na prática, quem decide é o patrão.'], fonte:''},
-  {q:'"Carteira assinada é coisa do passado."', a:['Carteira assinada garante férias, 13º e FGTS.','No trabalho por hora, tudo isso fica proporcional ao pouco que você trabalhou.','Sem salário certo, fica difícil financiar uma casa ou um carro.'], fonte:''},
-  {q:'"A CLT atrapalha quem quer empreender."', a:['Quem quer arriscar pode abrir um MEI e ser dono do próprio negócio.','O problema é o risco imposto: você trabalha pro patrão, mas sem as garantias de empregado.','Aí o risco fica com você e o lucro fica com ele.'], fonte:''}
+  {c:0, q:'"Quem é bom ganha mais trabalhando por hora."', a:['Pode até ser, nos meses bons.','Mas imagine seu filho começando a vida sem saber se vai ganhar R$ 300 ou R$ 1.500 no mês.','Como ele aluga uma casa? Como financia uma moto?'], fonte:''},
+  {c:0, q:'"Carteira assinada é coisa do passado."', a:['Carteira assinada garante férias, 13º e FGTS.','No trabalho por hora, tudo isso fica proporcional ao pouco que você trabalhou.'], fonte:''},
+  {c:0, q:'"A CLT atrapalha quem quer empreender."', a:['Quem quer arriscar pode abrir um MEI e ser dono do próprio negócio.','O problema é o risco imposto: você trabalha pro patrão, mas sem as garantias de empregado.','Aí o risco fica com você e o lucro fica com ele.'], fonte:''},
+  {c:0, q:'"Com trabalho por hora, mais gente vai ter emprego."', a:['O trabalho por hora existe desde 2017.','Em 2025, metade dos contratos por hora não teve nenhum dia de trabalho no ano, segundo o DIEESE.','Na média, quem trabalhou ganhou R$ 703 por mês, menos da metade de um salário mínimo.'], fonte:'https://www.dieese.org.br/boletimempregoempauta/2026/boletimEmpregoPauta33.pdf'}
  ],
  patria: [
-  {q:'"Os EUA são nossos aliados, temos que seguir eles."', a:['Aliado se respeita, não se obedece.','Em 2025, a tarifa dos EUA puniu produtores brasileiros, inclusive do agro.','Nenhum país coloca o Brasil em primeiro lugar. Só nós.'], fonte:''},
-  {q:'"Lula é amigo de ditador."', a:['Comércio não é amizade.','A China é quem mais compra do agro brasileiro: soja, carne e minério.','Bolsonaro também foi à China vender pra eles, em 2019.'], fonte:''}
+  {c:0, q:'"Lula quer transformar o Brasil numa Venezuela."', a:['Lula governou de 2003 a 2010 e de novo desde 2023, e o Brasil seguiu com eleição livre e imprensa livre.','Em 2010 ele saiu com 87% de aprovação e passou o cargo, como manda a lei.'], fonte:'https://www.aosfatos.org/noticias/site-usa-pesquisa-de-2010-para-dizer-que-hoje-lula-tem-aprovacao-recorde/'},
+  {c:0, q:'"Lula é amigo de ditador."', a:['Fazer negócio com outros países é trabalho de qualquer presidente.','A China é quem mais compra do Brasil: soja, carne e minério de ferro.','Até Bolsonaro foi à China vender pra eles, em 2019.'], fonte:'https://www.moneytimes.com.br/bolsonaro-se-encontra-com-presidente-chines-para-assinatura-de-acordos/'}
  ],
  justica: [
-  {q:'"Lula é ladrão."', a:['Hoje ele não tem nenhuma condenação.','Quem acusa precisa provar num julgamento justo. Essa regra protege você também.'], fonte:''},
-  {q:'"Lula foi condenado em 3 instâncias."', a:['Todas as condenações nasceram do mesmo processo, com um juiz que o STF declarou parcial e que não era o juiz certo pro caso.','Quando a base é viciada, tudo o que veio depois cai junto.','Você aceitaria ser julgado por um juiz que é seu inimigo?'], fonte:''},
-  {q:'"Foi tudo armação do STF."', a:['O juiz que condenou Lula virou ministro do Bolsonaro logo depois.','Mensagens vazadas mostraram o juiz orientando a acusação.','Por isso o STF declarou o julgamento parcial.'], fonte:''},
-  {q:'"E o mensalão? E o petrolão?"', a:['Houve corrupção, e gente do PT foi condenada e presa.','Isso mostra que a Justiça e a Polícia Federal funcionaram com o PT no governo.'], fonte:''},
-  {q:'"E o filho do Lula?"', a:['Se houver indício, tem que investigar e punir.','Nenhum filho de presidente está acima da lei, de nenhum presidente.'], fonte:''}
+  {c:0, q:'"Lula foi condenado em 3 instâncias."', a:['Todas as condenações vieram da mesma vara de Curitiba.','Em 2021, o STF decidiu por 8 a 3 que ela não era o lugar certo pra julgar o caso. Quando a base cai, o que veio depois cai junto.'], fonte:'https://www.brasildefato.com.br/2021/04/15/por-8-a-3-stf-decide-que-moro-e-incompetente-para-julgar-lula-que-segue-elegivel'},
+  {c:0, q:'"Foi tudo armação do STF."', a:['Mensagens vazadas mostraram o juiz combinando passos com a acusação.','A anulação teve votos de ministros indicados por FHC e por Temer.'], fonte:'https://www.poder360.com.br/justica/vaza-jato-moro-pediu-manifestacao-do-mpf-e-orientou-contra-delacao-de-cunha/'},
+  {c:1, q:'"E o mensalão? E o petrolão?"', a:['Houve corrupção, como no mensalão, e gente do PT foi condenada e presa, como José Dirceu e José Genoino.','Isso mostra que a Justiça e a Polícia Federal funcionaram com o PT no governo.'], fonte:'https://www.congressoemfoco.com.br/noticia/67420/as-penas-dos-condenados-no-mensalao-pelo-stf'}
  ],
  bolso: [
-  {q:'"A dívida pública explodiu com Lula."', a:['A dívida subiu, sim.','Parte disso foi pagar contas que o governo anterior adiou (R$ 92 bi em precatórios). Outra parte são os juros altos.'], fonte:''},
-  {q:'"Empresa pública só dá prejuízo."', a:['Petrobras, Banco do Brasil e Caixa dão lucro de bilhões.','E empresa pública não existe só pra lucrar: os Correios chegam aonde empresa privada não vai.'], fonte:''},
-  {q:'"Bolsa Família sustenta vagabundo."', a:['O Bolsa Família exige criança na escola e vacina em dia.','Quem arruma emprego pode continuar recebendo uma parte por um tempo, pra não ter medo de trabalhar.'], fonte:''},
-  {q:'"Governo gasta demais com remédio e aposentado."', a:['Remédio de pressão que falta vira AVC, e um AVC custa muito mais pro SUS. Prevenir sai mais barato.','Desde 2025, os remédios do Farmácia Popular são de graça.','Desde 2023, o salário mínimo e a aposentadoria sobem acima da inflação.'], fonte:''},
-  {q:'"O PT só aumenta imposto."', a:['Quem ganha até R$ 5 mil parou de pagar Imposto de Renda.','Quem ganha mais de R$ 50 mil por mês passou a pagar um pouco mais pra compensar.'], fonte:''}
+  {c:0, q:'"O PT só aumenta imposto."', a:['Quem ganha mais de R$ 50 mil por mês e paga pouco imposto, como quem vive de dividendos, agora tem um imposto mínimo de até 10%.','É isso que paga a isenção de quem ganha menos.'], fonte:'https://agenciabrasil.ebc.com.br/economia/noticia/2025-12/isencao-de-ir-para-quem-ganha-ate-r-5-mil-entra-em-vigor'},
+  {c:0, q:'"Bolsa Família sustenta vagabundo."', a:['O Bolsa Família exige criança na escola e vacina em dia.','Quem arruma emprego pode continuar recebendo metade do benefício por até 18 meses, pra não ter medo de trabalhar.'], fonte:'https://www.gov.br/mds/pt-br/acoes-e-programas/bolsa-familia/regra-de-protecao'},
+  {c:1, q:'"A dívida pública explodiu com Lula."', a:['A dívida subiu, sim. Boa parte disso vem dos juros altos, que fazem a dívida crescer sozinha.','O governo segue uma regra de limite de gastos, o arcabouço fiscal.'], fonte:'https://www.cnnbrasil.com.br/economia/money/macroeconomia/bc-divida-bruta-do-governo-geral-avanca-para-829-do-pib-em-agosto/'},
+  {c:1, q:'"Empresa pública só dá prejuízo."', a:['Em 2025, a Petrobras lucrou R$ 110 bilhões, a Caixa R$ 16 bilhões e o Banco do Brasil R$ 20 bilhões.','E empresa pública não existe só pra lucrar: os Correios chegam a quase todas as cidades do país.'], fonte:'https://www.cnnbrasil.com.br/economia/negocios/balanco-petrobras-4t2026/'},
+  {c:1, q:'"Governo gasta demais com remédio."', a:['Controlar a pressão reduz muito o risco de AVC, que custa caro pro SUS.','Desde 2025, os 41 remédios do Farmácia Popular são de graça, inclusive os de pressão. Prevenir sai mais barato.'], fonte:'https://www.cnnbrasil.com.br/saude/farmacia-popular-programa-tera-gratuidade-em-41-medicamentos-veja-lista/'}
  ]
 };
 
@@ -515,11 +496,11 @@ function fato(d, sim){
  var a = sim ? d.s : d.n, reacao = a.r;
  var f = document.createElement('div');
  f.className = 'fato';
- f.innerHTML = '<div class="tag"><span>' + (a.p ? '💡 VOCÊ SABIA?' : '🤔 PENSE NISSO') + '</span></div><div class="corpo">' +
+ f.innerHTML = '<div class="tag"><span>' + (a.p ? '💡 Você sabia?' : '🤔 Pense nisso') + '</span></div><div class="corpo">' +
   '<div class="reacao"></div><ul></ul>' +
-  (d.fonte ? '<a target="_blank" rel="noopener">Ver a fonte ↗</a>' : '') +
+  (a.fonte || d.fonte ? '<a target="_blank" rel="noopener">Ver a fonte ↗</a>' : '') +
   '</div><div class="pe">' +
-  (DUV[d.t] ? '<button class="duv-btn">' + ic('balao') + '<span class="duv-txt"><b>Mas dizem que...</b><small>Toque e veja ' + DUV[d.t].length + ' respostas</small></span>' + ic('seta') + '</button>' : '') +
+  (doCard(d).length ? '<button class="duv-btn">' + ic('balao') + '<span class="duv-txt"><b>Mas dizem que...</b><small>' + (doCard(d).length === 1 ? 'Toque e veja a resposta' : 'Toque e veja ' + doCard(d).length + ' respostas') + '</small></span>' + ic('seta') + '</button>' : '') +
   '<button class="btn b-verde">Próximo →</button></div>';
  f.querySelector('.reacao').textContent = reacao;
  var ul = f.querySelector('ul');
@@ -528,12 +509,12 @@ function fato(d, sim){
   li.className = 'sobe'; li.style.setProperty('--d', (.15 + k * .12) + 's');
   li.textContent = t; ul.appendChild(li);
  });
- if (d.fonte) f.querySelector('a').href = d.fonte;
+ if (a.fonte || d.fonte) f.querySelector('.corpo a').href = a.fonte || d.fonte;
  var leitura = reacao + ' ' + a.x.join(' ');
  f.querySelector('.tag').appendChild(botaoSom(function(){ fala(leitura, d.ax); }));
  f.querySelector('.pe .b-verde').onclick = proximo;
  var db = f.querySelector('.duv-btn');
- if (db) db.onclick = function(){ abreFolha(d.t); };
+ if (db) db.onclick = function(){ abreFolha(d.t, ordem(d)); };
  $('palco').innerHTML = '';
  $('palco').appendChild(f);
  fase = 'f';
@@ -550,8 +531,14 @@ function proximo(){
 function esc(s){ return s.replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
 
 /* ---------- "Mas dizem que...": sanfona que abre ao tocar ---------- */
-function duvidas(t){
+// posição do cartão dentro do tema (0 ou 1)
+function ordem(d){ return CARDS.filter(function(c){ return c.t === d.t; }).indexOf(d); }
+function doCard(d){ return (DUV[d.t] || []).filter(function(x){ return x.c === ordem(d); }); }
+
+// lista em sanfona; sem "c" mostra todas do tema (resultado)
+function duvidas(t, c){
  return DUV[t].map(function(x, k){
+  if (c !== undefined && x.c !== c) return '';
   return '<details class="duv"><summary>' + esc(x.q) + '</summary><div class="resp"><ul>' +
    x.a.map(function(s){ return '<li>' + esc(s) + '</li>'; }).join('') + '</ul>' +
    '<div class="resp-pe"><button class="ouvir-duv" data-t="' + t + '" data-k="' + k + '">' + ic('som') + ' Ouvir</button>' +
@@ -559,9 +546,9 @@ function duvidas(t){
    '</div></div></details>';
  }).join('');
 }
-function abreFolha(t){
+function abreFolha(t, c){
  para();
- $('folhaLista').innerHTML = '<h3 class="duv-tema">' + TEMAS[t].i + ' ' + esc(TEMAS[t].nome) + '</h3>' + duvidas(t);
+ $('folhaLista').innerHTML = '<h3 class="duv-tema">' + TEMAS[t].i + ' ' + esc(TEMAS[t].nome) + '</h3>' + duvidas(t, c);
  $('folha').classList.add('on');
 }
 function fechaFolha(){ $('folha').classList.remove('on'); para(); }
@@ -604,7 +591,7 @@ function resultado(){
   sims.forEach(function(t){
    var x = TEMAS[t];
    h += '<div class="valor sobe"' + d() + '><span class="ico">' + x.i + '</span><div><b>' + esc(x.nome) + '</b><small>' + esc(x.l) + '</small>' +
-        (obj[t] ? '<small class="obj">' + esc(x.o) + '</small>' : '') + '</div></div>';
+        '</div></div>';
   });
   h += '</div><div class="conclusao sobe"' + d() + '><h2>Lula é o melhor pra sua família.</h2>' +
        '<span class="data">' + DATA + ' · vote 13</span></div>';
