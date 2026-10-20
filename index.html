@@ -14,6 +14,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<script src="https://barra.comitedetecnologia.com.br/barra.js" defer></script>
 <style>
 /* Tokens no padrão Tailwind (cores, sombras, raios) sem carregar a biblioteca */
 :root{
@@ -28,10 +29,12 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
 body{font:20px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--slate-900);background:var(--slate-100);-webkit-tap-highlight-color:transparent;overscroll-behavior:none;-webkit-text-size-adjust:100%;overflow-x:hidden}
+/* coluna: a barra dos Aplicativos da Virada (se houver) fica em cima e a tela ocupa o resto */
+body{display:flex;flex-direction:column;height:100vh;height:100dvh}
 button{font:inherit;cursor:pointer;border:0}
-.tela{display:none;flex-direction:column;min-height:100vh;min-height:100dvh;max-width:448px;margin:0 auto;padding:calc(20px + env(safe-area-inset-top)) 16px calc(20px + env(safe-area-inset-bottom))}
+.tela{display:none;flex-direction:column;flex:1 0 auto;width:100%;max-width:448px;margin:0 auto;padding:calc(20px + env(safe-area-inset-top)) 16px calc(20px + env(safe-area-inset-bottom))}
 /* tela dos cartões: altura exata da área visível, o cartão se adapta ao que sobra */
-#perguntas{height:100vh;height:100dvh;min-height:0;overflow:hidden}
+#perguntas{flex:1 1 0;min-height:0;overflow:hidden}
 .tela.on{display:flex}
 .btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border-radius:16px;padding:18px;font-size:22px;font-weight:800;text-decoration:none;box-shadow:var(--shadow-lg);transition:transform .15s,box-shadow .15s}
 .btn:active{transform:scale(.96);box-shadow:none}
